@@ -1,7 +1,8 @@
-<form [formGroup]="toDoForm">
+<form class="input__form" [formGroup]="toDoForm">
     <div>
-        <label>To Do</label>
-        <input name="ToDo" formControlName ="toDoInput">
-        <button (click)="establishTask()">Establish the task</button>
+        <label class="input__label">To Do</label>
+        <input class="input__input" name="ToDo" formControlName ="toDoInput">
+        <button class="input__button" (click)="establishTask()">Establish the task</button>
     </div>
 </form>
+<app-todo-list [tasksArray] = "tasksArray" ></app-todo-list>

@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { FormGroup ,FormControl, ReactiveFormsModule, FormsModule} from "@angular/forms"
+import { TodoListComponent } from "../todo-list/todo-list.component";
 
 @Component({
   selector: 'app-input',
   standalone: true,
-  imports: [ReactiveFormsModule, FormsModule],
+  imports: [ReactiveFormsModule, FormsModule, TodoListComponent],
   templateUrl: './input.component.html',
   styleUrl: './input.component.scss'
 })

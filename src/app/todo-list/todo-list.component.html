@@ -1,1 +1,5 @@
-Работает
+<ul class="todo-list__items">
+    @for (task of tasksArray; track $index) {
+        <li class="todo-list__item">{{ task }}</li>
+    }
+</ul>
