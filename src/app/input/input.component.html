@@ -2,10 +2,6 @@
     <div>
         <label>To Do</label>
         <input name="ToDo" formControlName ="toDoInput">
-
-        @if (toDoForm.controls["toDoInput"].invalid && toDoForm.controls["toDoInput"].touched){
-            <div>Set a task</div>
-        }
         <button (click)="establishTask()">Establish the task</button>
     </div>
 </form>

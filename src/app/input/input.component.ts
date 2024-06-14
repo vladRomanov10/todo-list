@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup ,FormControl, ReactiveFormsModule, FormsModule, Validators } from "@angular/forms"
+import { FormGroup ,FormControl, ReactiveFormsModule, FormsModule} from "@angular/forms"
 
 @Component({
   selector: 'app-input',
@@ -11,16 +11,26 @@ import { FormGroup ,FormControl, ReactiveFormsModule, FormsModule, Validators } 
 export class InputComponent {
   toDoForm: any
 
+  tasksArray: any[] = []
+
   constructor() {
     this.toDoForm = new FormGroup({
 
-      'toDoInput': new FormControl('', Validators.required)
+      'toDoInput': new FormControl(null)
     })
   }
-  inputValue: any
 
   establishTask() {
-    this.inputValue = this.toDoForm.get('toDoInput').value
-    console.log(this.inputValue)
+    const inputValue = this.toDoForm.get('toDoInput').value
+
+    this.tasksArray.push(inputValue)
+
+    this.clearInputValue()
+
+    console.log(this.tasksArray)
+  }
+
+  clearInputValue() {
+    this.toDoForm.patchValue({toDoInput: null})
   }
 }
