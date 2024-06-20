@@ -1,8 +1,5 @@
-<form class="input__form" [formGroup]="toDoForm">
-    <div>
-        <label class="input__label">To Do</label>
-        <input class="input__input" name="ToDo" formControlName ="toDoInput">
-        <button class="input__button" (click)="establishTask()">Establish the task</button>
-    </div>
+<form class="input__form" novalidate [formGroup]="toDoForm">
+    <label class="input__label">Enter a task</label>
+    <input class="input__input" formControlName = "task">
+    <button class="input__button" [disabled]="toDoForm.invalid">Add the task</button>
 </form>
-<app-todo-list [tasksArray] = "tasksArray" ></app-todo-list>
