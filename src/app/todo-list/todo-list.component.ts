@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, Input} from '@angular/core';
 import { TodoItemComponent } from "../todo-item/todo-item.component";
 
 @Component({
@@ -9,5 +9,5 @@ import { TodoItemComponent } from "../todo-item/todo-item.component";
   styleUrl: './todo-list.component.scss'
 })
 export class TodoListComponent {
-
+  @Input() tasksToDisplay:any[] = []
 }

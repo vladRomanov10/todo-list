@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {FormGroup, FormControl, ReactiveFormsModule, FormsModule, Validators} from "@angular/forms"
 import { TodoListComponent } from "../todo-list/todo-list.component";
 
@@ -16,5 +16,11 @@ export class InputComponent {
     this.toDoForm = new FormGroup({
       'task': new FormControl('', Validators.required)
     })
+  }
+
+  @Output() addTaskEvent = new EventEmitter()
+
+  addTask(value:any) {
+    this.addTaskEvent.emit(value)
   }
 }

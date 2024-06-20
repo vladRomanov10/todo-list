@@ -1,2 +1,2 @@
-<app-input></app-input>
-<app-todo-list></app-todo-list>
+<app-input (addTaskEvent)="pushTaskInArray($event)"></app-input>
+<app-todo-list [tasksToDisplay]="tasksArray"></app-todo-list>

@@ -1,1 +1,6 @@
-<app-todo-item></app-todo-item>
+<ul>
+    @for (task of tasksToDisplay; track task.id) {
+        <p>{{task}}</p>
+    }
+</ul>
+

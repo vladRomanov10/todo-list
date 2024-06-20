@@ -11,5 +11,10 @@ import { TodoListComponent } from "./todo-list/todo-list.component";
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'todo-list';
+
+  tasksArray: any[] = []
+
+  pushTaskInArray(value:any) {
+    this.tasksArray.push(value)
+  }
 }
