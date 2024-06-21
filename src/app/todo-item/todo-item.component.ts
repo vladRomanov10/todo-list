@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-todo-item',
@@ -8,5 +8,13 @@ import { Component } from '@angular/core';
   styleUrl: './todo-item.component.scss'
 })
 export class TodoItemComponent {
+  @Input() taskToDisplay:any
 
+  @Input() isCompleted:any
+
+  @Output() markAsDoneEvent = new EventEmitter()
+
+  markAsDone () {
+    this.markAsDoneEvent.emit()
+  }
 }

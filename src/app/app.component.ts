@@ -14,7 +14,13 @@ export class AppComponent {
 
   tasksArray: any[] = []
 
+  isCompleted: any = false
+
   pushTaskInArray(value:any) {
     this.tasksArray.push(value)
+  }
+
+  markAsDone () {
+    this.isCompleted = !this.isCompleted
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import { TodoItemComponent } from "../todo-item/todo-item.component";
 
 @Component({
@@ -9,5 +9,13 @@ import { TodoItemComponent } from "../todo-item/todo-item.component";
   styleUrl: './todo-list.component.scss'
 })
 export class TodoListComponent {
-  @Input() tasksToDisplay:any[] = []
+  @Input() tasksArray:any[] = []
+
+  @Input() isCompleted:any
+
+  @Output() markAsDoneEvent = new EventEmitter()
+
+  markAsDone() {
+    this.markAsDoneEvent.emit()
+  }
 }

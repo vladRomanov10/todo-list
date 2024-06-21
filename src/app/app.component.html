@@ -1,2 +1,2 @@
 <app-input (addTaskEvent)="pushTaskInArray($event)"></app-input>
-<app-todo-list [tasksToDisplay]="tasksArray"></app-todo-list>
+<app-todo-list [tasksArray]="tasksArray" [isCompleted]="isCompleted" (markAsDoneEvent)="markAsDone()"></app-todo-list>

@@ -1,1 +1,9 @@
-
+<li>
+    <div class="todo__flex-wrap">
+        <p [class.todo__item_completed]="isCompleted">{{taskToDisplay}}</p>
+        @if (!isCompleted) {
+            <button class="todo__done-button" (click)="markAsDone()">Done</button>
+            <button class="todo__cancel-button">Cancel</button>
+        }
+    </div>
+</li>
