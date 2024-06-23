@@ -18,4 +18,7 @@ export class AppComponent {
     this.tasksArray.push(value)
   }
 
+  deleteTask(taskName:any) {
+    this.tasksArray = this.tasksArray.filter((task) => task !== taskName)
+  }
 }

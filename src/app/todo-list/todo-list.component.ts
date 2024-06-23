@@ -13,9 +13,9 @@ export class TodoListComponent {
 
   @Input() isCompleted:any
 
-  @Output() markAsDoneEvent = new EventEmitter()
+  @Output() markTaskAsCanceledEvent = new EventEmitter()
 
-  markAsDone() {
-    this.markAsDoneEvent.emit()
+  markTaskAsCanceled(taskName:any) {
+    this.markTaskAsCanceledEvent.emit(taskName)
   }
 }

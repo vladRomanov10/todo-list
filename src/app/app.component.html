@@ -1,2 +1,2 @@
 <app-input (addTaskEvent)="pushTaskInArray($event)"></app-input>
-<app-todo-list [tasksArray]="tasksArray"></app-todo-list>
+<app-todo-list [tasksArray]="tasksArray" (markTaskAsCanceledEvent) = "deleteTask($event)"></app-todo-list>
