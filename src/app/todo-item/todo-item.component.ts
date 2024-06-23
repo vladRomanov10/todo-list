@@ -10,11 +10,9 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 export class TodoItemComponent {
   @Input() taskToDisplay:any
 
-  @Input() isCompleted:any
-
-  @Output() markAsDoneEvent = new EventEmitter()
+  isCompleted:any = false
 
   markAsDone () {
-    this.markAsDoneEvent.emit()
+    this.isCompleted = !this.isCompleted
   }
 }

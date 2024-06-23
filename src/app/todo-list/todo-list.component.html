@@ -1,6 +1,6 @@
 <ul class="todo__list">
     @for (task of tasksArray; track task.id) {
-        <app-todo-item [taskToDisplay]="task" [isCompleted]="isCompleted" (markAsDoneEvent)="markAsDone()"></app-todo-item>
+        <app-todo-item [taskToDisplay]="task"></app-todo-item>
     }
 </ul>
 
