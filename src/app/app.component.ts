@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { InputComponent } from "./input/input.component";
 import { TodoListComponent } from "./todo-list/todo-list.component";
+import {LocalStorageService} from "./local-storage.service";
 
 @Component({
   selector: 'app-root',
@@ -12,10 +13,13 @@ import { TodoListComponent } from "./todo-list/todo-list.component";
 })
 export class AppComponent {
 
+  localStorageService = inject(LocalStorageService)
+
   tasksArray: any[] = []
 
   pushTaskInArray(value:any) {
     this.tasksArray.push(value)
+    this.localStorageService.setArrayInLS(this.tasksArray)
   }
 
   deleteTask(taskName:any) {
