@@ -1,6 +1,17 @@
 <ul class="todo__list">
     @for (task of tasksArray; track task.id) {
-        <app-todo-item [taskToDisplay]="task" (markTaskAsCanceledEvent)="markTaskAsCanceled($event)"></app-todo-item>
+        <app-todo-item
+                [taskToDisplay]="task"
+                [isCompleted]="false"
+                (markTaskAsCanceledEvent)="markTaskAsCanceled($event)"
+                (markTaskAsDoneEvent)="markTaskAsDone($event)">
+        </app-todo-item>
+    }
+    @for (doneTask of doneTasksArray; track doneTask.id) {
+        <app-todo-item
+                [taskToDisplay]="doneTask"
+                [isCompleted] ="true">
+        </app-todo-item>
     }
 </ul>
 

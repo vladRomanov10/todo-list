@@ -15,14 +15,31 @@ export class AppComponent {
 
   localStorageService = inject(LocalStorageService)
 
-  tasksArray: any[] = []
+  activeTasksArray: any[] = []
 
-  pushTaskInArray(value:any) {
-    this.tasksArray.push(value)
-    this.localStorageService.setArrayInLS(this.tasksArray)
+  doneTasksArray:any[] = []
+
+  activeLSKey = this.localStorageService.activeTasksArrayLSKey
+  doneLSKey = this.localStorageService.doneTasksArrayLSKey
+
+  ngOnInit() {
+    this.activeTasksArray = this.localStorageService.getTasksArrayFromLS(this.activeLSKey)
+    this.doneTasksArray = this.localStorageService.getTasksArrayFromLS(this.doneLSKey)
+  }
+
+  pushActiveTaskInArray(taskName:any) {
+    this.activeTasksArray.push(taskName)
+    this.localStorageService.setTasksArrayInLS(this.activeLSKey, this.activeTasksArray)
+  }
+
+  pushDoneTaskInArray(taskName:any) {
+    this.doneTasksArray.push(taskName)
+    this.localStorageService.setTasksArrayInLS(this.doneLSKey, this.doneTasksArray)
+    this.deleteTask(taskName)
   }
 
   deleteTask(taskName:any) {
-    this.tasksArray = this.tasksArray.filter((task) => task !== taskName)
+    this.activeTasksArray = this.activeTasksArray.filter((task) => task !== taskName)
+    this.localStorageService.setTasksArrayInLS(this.activeLSKey, this.activeTasksArray)
   }
 }

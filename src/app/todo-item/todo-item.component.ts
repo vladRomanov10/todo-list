@@ -11,14 +11,15 @@ export class TodoItemComponent {
   @Input() taskToDisplay:any
 
   @Output() markTaskAsCanceledEvent = new EventEmitter()
+  @Output() markTaskAsDoneEvent = new EventEmitter()
 
-  isCompleted:any = false
-
-  markTaskAsDone () {
-    this.isCompleted = !this.isCompleted
-  }
+  @Input() isCompleted:any
 
   markTaskAsCanceled() {
     this.markTaskAsCanceledEvent.emit(this.taskToDisplay)
+  }
+
+  markTaskAsDone() {
+    this.markTaskAsDoneEvent.emit(this.taskToDisplay)
   }
 }

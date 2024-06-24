@@ -11,11 +11,16 @@ import { TodoItemComponent } from "../todo-item/todo-item.component";
 export class TodoListComponent {
   @Input() tasksArray:any[] = []
 
-  @Input() isCompleted:any
+  @Input() doneTasksArray:any[] = []
 
   @Output() markTaskAsCanceledEvent = new EventEmitter()
+  @Output() markTaskAsDoneEvent = new EventEmitter()
 
   markTaskAsCanceled(taskName:any) {
     this.markTaskAsCanceledEvent.emit(taskName)
+  }
+
+  markTaskAsDone(taskName:any) {
+    this.markTaskAsDoneEvent.emit(taskName)
   }
 }
