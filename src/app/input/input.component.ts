@@ -20,7 +20,8 @@ export class InputComponent {
 
   @Output() addTaskEvent = new EventEmitter()
 
-  addTask(value:any) {
-    this.addTaskEvent.emit(value)
+  addTask(inputValue:any) {
+    this.addTaskEvent.emit(inputValue)
+    this.toDoForm.get('task').setValue('')
   }
 }
