@@ -1,7 +1,11 @@
 <app-input (addTaskEvent)="pushActiveTaskInArray($event)"></app-input>
 <app-todo-list
         [tasksArray]="activeTasksArray"
-        [doneTasksArray]="doneTasksArray"
+        [compTasksArray]="compTasksArray"
         (markTaskAsCanceledEvent) = "deleteTask($event)"
-        (markTaskAsDoneEvent)="pushDoneTaskInArray($event)">
+        (markTaskAsCompEvent)="pushCompTaskInArray($event)">
 </app-todo-list>
+<app-delete-buttons
+        [activeTasksArray] ="activeTasksArray"
+        [compTasksArray] = "compTasksArray">
+</app-delete-buttons>

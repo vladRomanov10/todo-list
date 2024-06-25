@@ -2,7 +2,7 @@
     <div class="todo__flex-wrap">
         <p [class.todo__item_completed]="isCompleted">{{taskToDisplay}}</p>
         @if (!isCompleted) {
-            <button class="todo__done-button" (click)="markTaskAsDone()">Done</button>
+            <button class="todo__comp-button" (click)="markTaskAsComp()">Completed</button>
             <button class="todo__cancel-button" (click)="markTaskAsCanceled()">Cancel</button>
         }
     </div>

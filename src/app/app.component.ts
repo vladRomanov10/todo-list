@@ -2,13 +2,14 @@ import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { InputComponent } from "./input/input.component";
 import { TodoListComponent } from "./todo-list/todo-list.component";
-import {LocalStorageService} from "./local-storage.service";
+import { LocalStorageService } from "./local-storage.service";
 import { ApiService } from "./api.service";
+import { DeleteButtonsComponent } from "./delete-buttons/delete-buttons.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, InputComponent, TodoListComponent],
+  imports: [RouterOutlet, InputComponent, TodoListComponent, DeleteButtonsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -22,20 +23,20 @@ export class AppComponent {
   APIService = inject(ApiService)
 
   activeTasksArray: any[] = []
-  doneTasksArray:any[] = []
+  compTasksArray:any[] = []
 
   activeLSKey = this.localStorageService.activeTasksArrayLSKey
-  doneLSKey = this.localStorageService.doneTasksArrayLSKey
+  compLSKey = this.localStorageService.doneTasksArrayLSKey
 
   async getTasks () {
     await this.APIService.getServerTasks()
 
     const firstFiveServerTasks:any = this.APIService.firstFiveServerTasks
     const activeLSTasks:any = this.localStorageService.getTasksArrayFromLS(this.activeLSKey)
-    const doneLSTasks:any = this.localStorageService.getTasksArrayFromLS(this.doneLSKey)
+    const doneLSTasks:any = this.localStorageService.getTasksArrayFromLS(this.compLSKey)
 
     this.activeTasksArray = [...firstFiveServerTasks, ...activeLSTasks]
-    this.doneTasksArray = doneLSTasks
+    this.compTasksArray = doneLSTasks
   }
 
   pushActiveTaskInArray(taskName:any) {
@@ -43,9 +44,9 @@ export class AppComponent {
     this.localStorageService.setTasksArrayInLS(this.activeLSKey, this.activeTasksArray)
   }
 
-  pushDoneTaskInArray(taskName:any) {
-    this.doneTasksArray.push(taskName)
-    this.localStorageService.setTasksArrayInLS(this.doneLSKey, this.doneTasksArray)
+  pushCompTaskInArray(taskName:any) {
+    this.compTasksArray.push(taskName)
+    this.localStorageService.setTasksArrayInLS(this.compLSKey, this.compTasksArray)
     this.deleteTask(taskName)
   }
 

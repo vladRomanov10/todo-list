@@ -4,12 +4,12 @@
                 [taskToDisplay]="task"
                 [isCompleted]="false"
                 (markTaskAsCanceledEvent)="markTaskAsCanceled($event)"
-                (markTaskAsDoneEvent)="markTaskAsDone($event)">
+                (markTaskAsCompEvent)="markTaskAsComp($event)">
         </app-todo-item>
     }
-    @for (doneTask of doneTasksArray; track doneTask.id) {
+    @for (compTask of compTasksArray; track compTask.id) {
         <app-todo-item
-                [taskToDisplay]="doneTask"
+                [taskToDisplay]="compTask"
                 [isCompleted] ="true">
         </app-todo-item>
     }
