@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { InputComponent } from "./input/input.component";
 import { TodoListComponent } from "./todo-list/todo-list.component";
 import {LocalStorageService} from "./local-storage.service";
+import { ApiService } from "./api.service";
 
 @Component({
   selector: 'app-root',
@@ -13,18 +14,28 @@ import {LocalStorageService} from "./local-storage.service";
 })
 export class AppComponent {
 
+  ngOnInit() {
+    this.getTasks()
+  }
+
   localStorageService = inject(LocalStorageService)
+  APIService = inject(ApiService)
 
   activeTasksArray: any[] = []
-
   doneTasksArray:any[] = []
 
   activeLSKey = this.localStorageService.activeTasksArrayLSKey
   doneLSKey = this.localStorageService.doneTasksArrayLSKey
 
-  ngOnInit() {
-    this.activeTasksArray = this.localStorageService.getTasksArrayFromLS(this.activeLSKey)
-    this.doneTasksArray = this.localStorageService.getTasksArrayFromLS(this.doneLSKey)
+  async getTasks () {
+    await this.APIService.getServerTasks()
+
+    const firstFiveServerTasks:any = this.APIService.firstFiveServerTasks
+    const activeLSTasks:any = this.localStorageService.getTasksArrayFromLS(this.activeLSKey)
+    const doneLSTasks:any = this.localStorageService.getTasksArrayFromLS(this.doneLSKey)
+
+    this.activeTasksArray = [...firstFiveServerTasks, ...activeLSTasks]
+    this.doneTasksArray = doneLSTasks
   }
 
   pushActiveTaskInArray(taskName:any) {
