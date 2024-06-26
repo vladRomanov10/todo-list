@@ -1,5 +1,5 @@
-<form class="input__form" novalidate [formGroup]="toDoForm">
-    <label class="input__label">Enter a task</label>
-    <input class="input__input" formControlName = "task">
-    <button class="input__button" [disabled]="toDoForm.invalid" (click)="addTask(toDoForm.value.task)">Add the task</button>
+<form class="form" novalidate [formGroup]="toDoForm">
+    <label for="input" class="form__label visually-hidden">Enter a task</label>
+    <input class="form__input" formControlName = "task" placeholder="Input new task here" id="input">
+    <button class="form__button" [disabled]="toDoForm.invalid" (click)="addTask(toDoForm.value.task)">Add the task</button>
 </form>
