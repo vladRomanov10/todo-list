@@ -1,5 +1,11 @@
 <form class="form" novalidate [formGroup]="toDoForm">
     <label for="input" class="form__label visually-hidden">Enter a task</label>
     <input class="form__input" formControlName = "task" placeholder="Input new task here" id="input">
-    <button class="form__button" [disabled]="toDoForm.invalid" (click)="addTask(toDoForm.value.task)">Add the task</button>
+    <button
+            class="form__button"
+            [disabled]="toDoForm.invalid"
+            (click)="addTask(toDoForm.value.task)"
+    >
+        <img class="form__button-icon" ngSrc="./assets/images/add-icon.png" width="32" height="32" alt="Add task button">
+    </button>
 </form>

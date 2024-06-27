@@ -1,7 +1,22 @@
 .form {
-  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  max-width: 612px;
+  height: 58px;
+  padding: 6px;
+  border: 2px solid black;
+  border-radius: 20px;
 }
 
 .form__input {
+  width: 80%;
+  height: 100%;
   border: none;
+  font-size: 1.2em;
+}
+
+.form__button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }

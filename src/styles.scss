@@ -73,18 +73,8 @@ textarea:not([rows]) {
 }
 
 @font-face {
-  font-family: LXGWWenKaiMonoTC-Light;
-  src: url("assets/fonts/LXGWWenKaiMonoTC-Light.ttf");
-}
-
-@font-face {
   font-family: LXGWWenKaiMonoTC-Regular;
   src: url("assets/fonts/LXGWWenKaiMonoTC-Regular.ttf");
-}
-
-@font-face {
-  font-family: LXGWWenKaiMonoTC-Bold;
-  src: url("assets/fonts/LXGWWenKaiMonoTC-Bold.ttf");
 }
 
 body {
@@ -93,8 +83,9 @@ body {
 }
 
 .wrapper {
-  width: 612px;
+  max-width: 612px;
   margin: 0 auto;
+  border: 1px solid black;
 }
 
 .visually-hidden {
@@ -108,4 +99,10 @@ body {
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
+}
+
+.check {
+  max-width: 612px;
+  height: 52px;
+  border: 1px solid blue;
 }

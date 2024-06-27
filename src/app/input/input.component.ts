@@ -1,11 +1,12 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {FormGroup, FormControl, ReactiveFormsModule, FormsModule, Validators} from "@angular/forms"
 import { TodoListComponent } from "../todo-list/todo-list.component";
+import {NgOptimizedImage} from "@angular/common";
 
 @Component({
   selector: 'app-input',
   standalone: true,
-  imports: [ReactiveFormsModule, FormsModule, TodoListComponent],
+    imports: [ReactiveFormsModule, FormsModule, TodoListComponent, NgOptimizedImage],
   templateUrl: './input.component.html',
   styleUrl: './input.component.scss'
 })
