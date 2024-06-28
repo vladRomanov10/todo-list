@@ -1,9 +1,12 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {NgOptimizedImage} from "@angular/common";
 
 @Component({
   selector: 'app-todo-item',
   standalone: true,
-  imports: [],
+  imports: [
+    NgOptimizedImage
+  ],
   templateUrl: './todo-item.component.html',
   styleUrl: './todo-item.component.scss'
 })

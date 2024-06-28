@@ -1,17 +1,25 @@
-<ul class="todo__list">
-    @for (task of tasksArray; track task.id) {
-        <app-todo-item
-                [taskToDisplay]="task"
-                [isCompleted]="false"
-                (markTaskAsCanceledEvent)="markTaskAsCanceled($event)"
-                (markTaskAsCompEvent)="markTaskAsComp($event)">
-        </app-todo-item>
-    }
-    @for (compTask of compTasksArray; track compTask.id) {
-        <app-todo-item
-                [taskToDisplay]="compTask"
-                [isCompleted] ="true">
-        </app-todo-item>
-    }
-</ul>
+<div class="todo-list">
+    <h2 class="todo-list__header">Active tasks</h2>
+    <ul class="todo-list__ul">
+        @for (task of tasksArray; track task.id) {
+            <app-todo-item
+                    [taskToDisplay]="task"
+                    [isCompleted]="false"
+                    (markTaskAsCanceledEvent)="markTaskAsCanceled($event)"
+                    (markTaskAsCompEvent)="markTaskAsComp($event)">
+            </app-todo-item>
+        }
+    </ul>
+    <div class="todo-list__line"></div>
+    <h2 class="todo-list__header">Completed tasks</h2>
+    <ul class="todo-list__completed-ul">
+        @for (compTask of compTasksArray; track compTask.id) {
+            <app-todo-item
+                    [taskToDisplay]="compTask"
+                    [isCompleted] ="true"
+            >
+            </app-todo-item>
+        }
+    </ul>
+</div>
 

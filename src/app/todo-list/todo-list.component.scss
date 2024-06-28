@@ -1,0 +1,25 @@
+ul {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+.todo-list {
+  font-size: 1.1em;
+  border: 2px solid black;
+  border-radius: 20px;
+  padding: 6px;
+}
+
+.todo-list__header {
+  margin-left: 20px;
+}
+
+.todo-list__line {
+  width: 50%;
+  margin: 16px auto;
+  border: 3px solid gray;
+}
+
+.todo-list__completed-ul {
+  margin-block-start: 8px;
+  padding-inline-start: 20px;
+}

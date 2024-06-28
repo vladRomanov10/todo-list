@@ -105,4 +105,11 @@ body {
   max-width: 612px;
   height: 52px;
   border: 1px solid blue;
+  margin: 0 auto;
+}
+
+.button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }
