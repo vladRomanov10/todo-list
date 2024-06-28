@@ -85,7 +85,6 @@ body {
 .wrapper {
   max-width: 612px;
   margin: 0 auto;
-  border: 1px solid black;
 }
 
 .visually-hidden {
@@ -99,13 +98,6 @@ body {
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
-}
-
-.check {
-  max-width: 612px;
-  height: 52px;
-  border: 1px solid blue;
-  margin: 0 auto;
 }
 
 .button {
