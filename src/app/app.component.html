@@ -1,18 +1,20 @@
 <div class="app">
-    <h1 class="app__header">MY tasks</h1>
+    <h1 class="app__header header">MY tasks</h1>
     <app-input
             class="app__input"
             (addTaskEvent)="pushActiveTaskInArray($event)">
     </app-input>
     <app-todo-list
             class="app__todo-list"
-            [tasksArray]="activeTasksArray"
+            [firstFiveServerTasks]="firstFiveServerTasks"
+            [activeTasksArray]="activeTasksArray"
             [compTasksArray]="compTasksArray"
             (markTaskAsCanceledEvent) = "deleteTask($event)"
             (markTaskAsCompEvent)="pushCompTaskInArray($event)">
     </app-todo-list>
     <app-delete-buttons
             class="app__delete-buttons"
+            [firstFiveServerTasks]="firstFiveServerTasks"
             [activeTasksArray] ="activeTasksArray"
             [compTasksArray] = "compTasksArray">
     </app-delete-buttons>

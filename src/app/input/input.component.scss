@@ -3,9 +3,6 @@
   justify-content: space-between;
   max-width: 612px;
   height: 58px;
-  padding: 6px;
-  border: 2px solid black;
-  border-radius: 20px;
 }
 
 .form__input {
@@ -16,3 +13,6 @@
   outline: transparent;
 }
 
+.form__input::placeholder {
+  color: #be88eb;
+}

@@ -15,10 +15,12 @@ export class DeleteButtonsComponent {
   activeLSKey = this.localStorageService.activeTasksArrayLSKey
   compLSKey = this.localStorageService.doneTasksArrayLSKey
 
+  @Input() firstFiveServerTasks:any
   @Input() activeTasksArray:any
   @Input() compTasksArray:any
 
   clearActiveArray() {
+    this.firstFiveServerTasks.length = 0
     this.activeTasksArray.length = 0
     this.localStorageService.setTasksArrayInLS(this.activeLSKey, this.activeTasksArray)
   }

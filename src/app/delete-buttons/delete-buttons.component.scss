@@ -1,7 +1,7 @@
 .delete-buttons {
   max-width: 612px;
   height: 58px;
-  font-size: 16px;
+  font-size: 17px;
   display: flex;
   justify-content: space-between;
 }
@@ -9,7 +9,6 @@
 .delete-buttons__item {
   width: 32%;
   height: 100%;
-  border: 2px solid black;
-  border-radius: 20px;
-  padding: 6px;
+  color: #a67fef;
+  font-weight: bold;
 }

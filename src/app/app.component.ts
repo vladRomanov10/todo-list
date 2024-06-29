@@ -22,6 +22,7 @@ export class AppComponent {
   localStorageService = inject(LocalStorageService)
   APIService = inject(ApiService)
 
+  firstFiveServerTasks:any[] = []
   activeTasksArray: any[] = []
   compTasksArray:any[] = []
 
@@ -35,7 +36,8 @@ export class AppComponent {
     const activeLSTasks:any = this.localStorageService.getTasksArrayFromLS(this.activeLSKey)
     const doneLSTasks:any = this.localStorageService.getTasksArrayFromLS(this.compLSKey)
 
-    this.activeTasksArray = [...firstFiveServerTasks, ...activeLSTasks]
+    this.firstFiveServerTasks = firstFiveServerTasks
+    this.activeTasksArray = activeLSTasks
     this.compTasksArray = doneLSTasks
   }
 
@@ -50,8 +52,14 @@ export class AppComponent {
     this.deleteTask(taskName)
   }
 
+  arrayFilter(array:any, taskName:any) {
+    return array.filter((task:any) => task !== taskName)
+  }
+
   deleteTask(taskName:any) {
-    this.activeTasksArray = this.activeTasksArray.filter((task) => task !== taskName)
+    this.firstFiveServerTasks = this.arrayFilter(this.firstFiveServerTasks, taskName)
+    this.activeTasksArray = this.arrayFilter(this.activeTasksArray, taskName)
     this.localStorageService.setTasksArrayInLS(this.activeLSKey, this.activeTasksArray)
   }
 }
+

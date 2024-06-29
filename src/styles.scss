@@ -80,6 +80,7 @@ textarea:not([rows]) {
 body {
   font-family: LXGWWenKaiMonoTC-Regular, sans-serif;
   font-size: 16px;
+  color: #6c68f6;
 }
 
 .wrapper {
@@ -100,8 +101,18 @@ body {
   overflow: hidden;
 }
 
+.header {
+  color: #a67fef;
+}
+
 .button {
   background: transparent;
   border: none;
   cursor: pointer;
+}
+
+.border {
+  border: 2px solid #a67fef;
+  padding: 6px;
+  border-radius: 20px;
 }

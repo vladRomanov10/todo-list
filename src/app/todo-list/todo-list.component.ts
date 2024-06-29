@@ -10,8 +10,9 @@ import { TodoItemComponent } from "../todo-item/todo-item.component";
   styleUrl: './todo-list.component.scss'
 })
 export class TodoListComponent {
-  @Input() tasksArray:any[] = []
 
+  @Input() firstFiveServerTasks:any[] = []
+  @Input() activeTasksArray:any[] = []
   @Input() compTasksArray:any[] = []
 
   @Output() markTaskAsCanceledEvent = new EventEmitter()
