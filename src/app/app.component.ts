@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { InputComponent } from "./input/input.component";
-import { TodoListComponent } from "./todo-list/todo-list.component";
-import { LocalStorageService } from "./local-storage.service";
-import { ApiService } from "./api.service";
-import { DeleteButtonsComponent } from "./delete-buttons/delete-buttons.component";
-
+import { InputComponent } from "./components/input/input.component";
+import { TodoListComponent } from "./components/todo-list/todo-list.component";
+import { LocalStorageService } from "./services/local-storage.service";
+import { ApiService } from "./services/api.service";
+import { DeleteButtonsComponent } from "./components/delete-buttons/delete-buttons.component";
+import { Task } from './types/interfaces/task.interface';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -22,17 +22,19 @@ export class AppComponent {
   localStorageService = inject(LocalStorageService)
   APIService = inject(ApiService)
 
-  firstFiveServerTasks:any[] = []
+  firstFiveServerTasks:Task[] | undefined = []
   activeTasksArray: any[] = []
   compTasksArray:any[] = []
+
+  tasksArray: Task[] = [];
+
 
   activeLSKey = this.localStorageService.activeTasksArrayLSKey
   compLSKey = this.localStorageService.doneTasksArrayLSKey
 
   async getTasks () {
-    await this.APIService.getServerTasks()
+    const firstFiveServerTasks: Task[] | undefined = await this.APIService.getServerTasks()
 
-    const firstFiveServerTasks:any = this.APIService.firstFiveServerTasks
     const activeLSTasks:any = this.localStorageService.getTasksArrayFromLS(this.activeLSKey)
     const doneLSTasks:any = this.localStorageService.getTasksArrayFromLS(this.compLSKey)
 

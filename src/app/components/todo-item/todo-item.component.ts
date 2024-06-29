@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {NgOptimizedImage} from "@angular/common";
+import { Task } from '../../types/interfaces/task.interface';
 
 @Component({
   selector: 'app-todo-item',
@@ -11,7 +12,11 @@ import {NgOptimizedImage} from "@angular/common";
   styleUrl: './todo-item.component.scss'
 })
 export class TodoItemComponent {
-  @Input() taskToDisplay:any
+  @Input() taskToDisplay: Task = {
+    id: 0,
+    title: '',
+    status: 'TODO'
+  }
 
   @Output() markTaskAsCanceledEvent = new EventEmitter()
   @Output() markTaskAsCompEvent = new EventEmitter()

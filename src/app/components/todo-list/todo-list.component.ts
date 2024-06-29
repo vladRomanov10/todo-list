@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import { TodoItemComponent } from "../todo-item/todo-item.component";
+import { Task } from '../../types/interfaces/task.interface';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { TodoItemComponent } from "../todo-item/todo-item.component";
 })
 export class TodoListComponent {
 
-  @Input() firstFiveServerTasks:any[] = []
+  @Input() firstFiveServerTasks:Task[] | undefined = []
   @Input() activeTasksArray:any[] = []
   @Input() compTasksArray:any[] = []
 
