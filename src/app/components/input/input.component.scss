@@ -3,17 +3,18 @@
   justify-content: space-between;
   max-width: 612px;
   height: 58px;
-}
 
-.form__input {
-  width: 80%;
-  height: 100%;
-  color: #6c68f6;
-  border: none;
-  font-size: 1.2em;
-  outline: transparent;
-}
+  &__input {
+    width: 90%;
+    height: 100%;
+    margin-left: 12px;
+    color: #6c68f6;
+    border: none;
+    font-size: 1.2em;
+    outline: transparent;
+  }
 
-.form__input::placeholder {
-  color: #be88eb;
+  &__input::placeholder {
+    color: #be88eb;
+  }
 }

@@ -1,24 +1,24 @@
 .todo-item {
   list-style-type: decimal;
   text-align: center;
-}
 
-.todo-item__flex-wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  text-align: left;
-}
+  &__flex-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+  }
 
-.todo-item__text {
-  width: 84%;
-}
+  &__text {
+    width: 84%;
+  }
 
-.todo-item__check-box {
+  &__check-box {
+    display: flex;
+  }
 
-}
-
-.todo__item_completed {
-  text-decoration: line-through;
-  list-style-type: none;
+  &__item-completed {
+    text-decoration: line-through;
+    list-style-type: none;
+  }
 }

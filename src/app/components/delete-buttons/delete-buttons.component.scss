@@ -4,11 +4,11 @@
   font-size: 17px;
   display: flex;
   justify-content: space-between;
-}
 
-.delete-buttons__item {
-  width: 32%;
-  height: 100%;
-  color: #a67fef;
-  font-weight: bold;
+  &__item {
+    width: 32%;
+    height: 100%;
+    color: #a67fef;
+    font-weight: bold;
+  }
 }

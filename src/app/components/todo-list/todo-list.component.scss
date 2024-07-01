@@ -1,24 +1,24 @@
-ul {
-  margin-block-start: 0;
-  margin-block-end: 0;
-}
-
 .todo-list {
   font-size: 1.1em;
-}
 
-.todo-list__header {
-  margin: 12px 0 12px 20px
-}
+  ul {
+    margin-block-start: 0;
+    margin-block-end: 0;
+  }
 
-.todo-list__line {
-  width: 50%;
-  margin: 16px auto 0;
-  border: 3px solid;
-  border-image: linear-gradient(to right, #e697e6, #6164f8) 1;
-}
+  &__header {
+    margin: 12px 0 12px 20px
+  }
 
-.todo-list__completed-ul {
-  margin-block-start: 8px;
-  padding-inline-start: 20px;
+  &__line {
+    width: 50%;
+    margin: 16px auto 0;
+    border: 3px solid;
+    border-image: linear-gradient(to right, #e697e6, #6164f8) 1;
+  }
+
+  &__completed-ul {
+    margin-block-start: 8px;
+    padding-inline-start: 20px;
+  }
 }

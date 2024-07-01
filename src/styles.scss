@@ -72,13 +72,10 @@ textarea:not([rows]) {
   scroll-margin-block: 5ex;
 }
 
-@font-face {
-  font-family: LXGWWenKaiMonoTC-Regular;
-  src: url("assets/fonts/LXGWWenKaiMonoTC-Regular.ttf");
-}
-
 body {
-  font-family: LXGWWenKaiMonoTC-Regular, sans-serif;
+  font-family: "LXGW WenKai Mono TC", monospace;
+  font-weight: 400;
+  font-style: normal;
   font-size: 16px;
   color: #6c68f6;
 }
@@ -109,6 +106,7 @@ body {
   background: transparent;
   border: none;
   cursor: pointer;
+  padding: 0;
 }
 
 .border {
