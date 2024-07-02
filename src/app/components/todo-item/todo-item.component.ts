@@ -13,9 +13,10 @@ import { Task } from '../../types/interfaces/task.interface';
 })
 export class TodoItemComponent {
   @Input() taskToDisplay: Task = {
+    userId: 0,
     id: 0,
     title: '',
-    status: 'TODO'
+    completed: false
   }
 
   @Output() markTaskAsCanceledEvent = new EventEmitter()

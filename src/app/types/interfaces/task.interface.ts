@@ -1,8 +1,6 @@
 export interface Task {
-    id: number;
-    title: string;
-    status: TaskStatus;
+    userId: number
+    id: number
+    title: string
+    completed: boolean
 }
-
-
-type TaskStatus = 'TODO' | 'COMPLETED';
