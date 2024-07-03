@@ -25,10 +25,7 @@ export class AppComponent {
   firstFiveServerTasks:Task[] | undefined = []
   activeTasksArray: any[] = []
   compTasksArray:any[] = []
-
-  tasksArray: Task[] = [];
-
-
+  
   activeLSKey = this.localStorageService.activeTasksArrayLSKey
   compLSKey = this.localStorageService.doneTasksArrayLSKey
 

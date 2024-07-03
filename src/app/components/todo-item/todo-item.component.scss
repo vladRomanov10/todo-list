@@ -17,7 +17,7 @@
     display: flex;
   }
 
-  &__item-completed {
+  &_completed {
     text-decoration: line-through;
     list-style-type: none;
   }

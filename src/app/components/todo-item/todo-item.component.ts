@@ -22,7 +22,6 @@ export class TodoItemComponent {
   @Output() markTaskAsCanceledEvent = new EventEmitter()
   @Output() markTaskAsCompEvent = new EventEmitter()
 
-  @Input() isCompleted:any
 
   markTaskAsCanceled() {
     this.markTaskAsCanceledEvent.emit(this.taskToDisplay)

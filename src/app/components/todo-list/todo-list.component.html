@@ -4,7 +4,6 @@
         @for (serverTask of firstFiveServerTasks; track serverTask.id) {
             <app-todo-item
                     [taskToDisplay]="serverTask"
-                    [isCompleted]="false"
                     (markTaskAsCanceledEvent)="markTaskAsCanceled($event)"
                     (markTaskAsCompEvent)="markTaskAsComp($event)"
             >
@@ -13,7 +12,6 @@
         @for (activeTask of activeTasksArray; track activeTask.id) {
             <app-todo-item
                     [taskToDisplay]="activeTask"
-                    [isCompleted]="false"
                     (markTaskAsCanceledEvent)="markTaskAsCanceled($event)"
                     (markTaskAsCompEvent)="markTaskAsComp($event)"
             >
@@ -26,7 +24,6 @@
         @for (compTask of compTasksArray; track compTask.id) {
             <app-todo-item
                     [taskToDisplay]="compTask"
-                    [isCompleted] ="true"
             >
             </app-todo-item>
         }
