@@ -7,13 +7,13 @@ import { Task } from '../types/interfaces/task.interface';
 export class ApiService {
   private readonly serverLink:string = 'https://jsonplaceholder.typicode.com/todos/'
 
-  async getServerTasks (): Promise<Task[] | undefined> {
+  async getServerTasks (): Promise<Task[]> {
     try {
       const serverTasks: Task[] = await this.serverRequest(this.serverLink)
       return serverTasks.slice(0, 5)
     } catch (error:any) {
       alert('Sorry, something went wrong')
-      return undefined
+      return []
     }
   }
 

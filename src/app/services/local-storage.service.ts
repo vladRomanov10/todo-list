@@ -1,31 +1,28 @@
 import { Injectable } from '@angular/core';
+import { Task } from "../types/interfaces/task.interface";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocalStorageService {
 
-  activeTasksArrayLSKey = 'activeTasks'
-  doneTasksArrayLSKey = 'doneTasks'
+  readonly lSKey:string = 'tasksArray'
 
-  convertArrayToString (array: any) {
+  convertArrayToString (array: Task[]):string {
     return JSON.stringify(array)
   }
 
-  convertStringToArray (string: any) {
-    return JSON.parse(string)
+  convertStringToArray (arrayInString: string):Task[] {
+    return JSON.parse(arrayInString)
   }
 
-  setTasksArrayInLS (LSKey: any, tasksArray: any) {
-    localStorage.setItem(LSKey, this.convertArrayToString(tasksArray))
+  setTasksArrayInLS (tasksArray: Task[]):void {
+    localStorage.setItem(this.lSKey, this.convertArrayToString(tasksArray))
   }
 
-  setDoneTasksArrayInLS (tasksArray: any) {
-    localStorage.setItem('doneTasks', this.convertArrayToString(tasksArray))
-  }
 
-  getTasksArrayFromLS (LSKey: any) {
-    const tasksArrayString = localStorage.getItem(LSKey)
+  getTasksArrayFromLS ():Task[] {
+    const tasksArrayString:string | null = localStorage.getItem(this.lSKey)
 
     return tasksArrayString ? this.convertStringToArray(tasksArrayString) : []
   }

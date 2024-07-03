@@ -6,7 +6,7 @@
     </app-input>
     <app-todo-list
             class="app__todo-list"
-            [firstFiveServerTasks]="firstFiveServerTasks"
+            [firstFiveServerTasks]="tasksArray"
             [activeTasksArray]="activeTasksArray"
             [compTasksArray]="compTasksArray"
             (markTaskAsCanceledEvent) = "deleteTask($event)"
@@ -14,7 +14,7 @@
     </app-todo-list>
     <app-delete-buttons
             class="app__delete-buttons"
-            [firstFiveServerTasks]="firstFiveServerTasks"
+            [firstFiveServerTasks]="tasksArray"
             [activeTasksArray] ="activeTasksArray"
             [compTasksArray] = "compTasksArray">
     </app-delete-buttons>

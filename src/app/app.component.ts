@@ -22,43 +22,37 @@ export class AppComponent {
   localStorageService = inject(LocalStorageService)
   APIService = inject(ApiService)
 
-  firstFiveServerTasks:Task[] | undefined = []
-  activeTasksArray: any[] = []
-  compTasksArray:any[] = []
-  
-  activeLSKey = this.localStorageService.activeTasksArrayLSKey
-  compLSKey = this.localStorageService.doneTasksArrayLSKey
+  tasksArray:Task[] = []
+
+  lsKey:string = this.localStorageService.lSKey
 
   async getTasks () {
-    const firstFiveServerTasks: Task[] | undefined = await this.APIService.getServerTasks()
+    const firstFiveServerTasks: Task[] = await this.APIService.getServerTasks()
 
-    const activeLSTasks:any = this.localStorageService.getTasksArrayFromLS(this.activeLSKey)
-    const doneLSTasks:any = this.localStorageService.getTasksArrayFromLS(this.compLSKey)
+    const lSTasks:Task[] = this.localStorageService.getTasksArrayFromLS()
 
-    this.firstFiveServerTasks = firstFiveServerTasks
-    this.activeTasksArray = activeLSTasks
-    this.compTasksArray = doneLSTasks
+    this.tasksArray = firstFiveServerTasks.concat(lSTasks)
   }
 
-  pushActiveTaskInArray(taskName:any) {
-    this.activeTasksArray.push(taskName)
-    this.localStorageService.setTasksArrayInLS(this.activeLSKey, this.activeTasksArray)
+  addId (tasksArray:Task[]):Task[] {
+    return tasksArray.map((task:Task, index:number):Task => ({...task, id: index + 1}))
   }
 
-  pushCompTaskInArray(taskName:any) {
-    this.compTasksArray.push(taskName)
-    this.localStorageService.setTasksArrayInLS(this.compLSKey, this.compTasksArray)
-    this.deleteTask(taskName)
+  pushActiveTaskInArray(taskTitle:string) {
+    const taskFromInput:Task = {
+      userId: 1,
+      id: 0,
+      title: taskTitle,
+      completed: false
+    }
+    this.tasksArray.push(taskFromInput)
+    this.tasksArray = this.addId(this.tasksArray)
+    this.localStorageService.setTasksArrayInLS(this.tasksArray)
   }
 
-  arrayFilter(array:any, taskName:any) {
-    return array.filter((task:any) => task !== taskName)
-  }
-
-  deleteTask(taskName:any) {
-    this.firstFiveServerTasks = this.arrayFilter(this.firstFiveServerTasks, taskName)
-    this.activeTasksArray = this.arrayFilter(this.activeTasksArray, taskName)
-    this.localStorageService.setTasksArrayInLS(this.activeLSKey, this.activeTasksArray)
+  deleteTask(taskToDel:Task):void {
+    this.tasksArray = this.tasksArray.filter((task:Task):boolean => task.id !== taskToDel.id)
+    this.localStorageService.setTasksArrayInLS(this.tasksArray)
   }
 }
 
