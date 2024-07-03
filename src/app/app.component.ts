@@ -50,6 +50,19 @@ export class AppComponent {
     this.localStorageService.setTasksArrayInLS(this.tasksArray)
   }
 
+  changeTaskStatus (taskForChange:Task) {
+    const foundTask:Task | undefined = this.tasksArray.find((task:Task) => taskForChange.id ===task.id)
+    if (foundTask) {
+      foundTask.completed = true
+    } else {
+      return
+    }
+  }
+
+  markTaskAsComp (compTask:Task) {
+    
+  }
+
   deleteTask(taskToDel:Task):void {
     this.tasksArray = this.tasksArray.filter((task:Task):boolean => task.id !== taskToDel.id)
     this.localStorageService.setTasksArrayInLS(this.tasksArray)

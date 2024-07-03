@@ -10,33 +10,25 @@ import { Task } from '../../types/interfaces/task.interface';
   styleUrl: './delete-buttons.component.scss'
 })
 export class DeleteButtonsComponent {
-  @Input({ required: true }) firstFiveServerTasks: Task[] | undefined = [];
-  @Input() activeTasksArray:any
-  @Input() compTasksArray:any
-  
+  @Input() tasksArray:Task[] = []
+
   localStorageService = inject(LocalStorageService)
 
-  public compLSKey = this.localStorageService.doneTasksArrayLSKey
-  private activeLSKey = this.localStorageService.activeTasksArrayLSKey
+  private readonly lSKey = this.localStorageService.lSKey
 
-  constructor() {
-
+  clearActiveTasks():void {
+    this.tasksArray = this.tasksArray.filter((task:Task):boolean => task.completed)
+    this.localStorageService.setTasksArrayInLS(this.tasksArray)
   }
 
-  clearActiveArray() {
-    this.firstFiveServerTasks!.length = 0
-    this.activeTasksArray.length = 0
-    this.localStorageService.setTasksArrayInLS(this.activeLSKey, this.activeTasksArray)
+  clearCompTasks():void {
+    this.tasksArray = this.tasksArray.filter((task:Task):boolean => !task.completed)
+    this.localStorageService.setTasksArrayInLS(this.tasksArray)
   }
 
-  clearCompArray() {
-    this.compTasksArray.length = 0
-    this.localStorageService.setTasksArrayInLS(this.compLSKey, this.compTasksArray)
+  clearAllTasks():void {
+    this.tasksArray.length = 0
+    this.localStorageService.setTasksArrayInLS(this.tasksArray)
   }
-
-  clearAllTaskArrays() {
-    this.clearActiveArray()
-    this.clearCompArray()
-  }
-
 }
+

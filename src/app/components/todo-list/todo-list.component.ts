@@ -12,9 +12,7 @@ import { Task } from '../../types/interfaces/task.interface';
 })
 export class TodoListComponent {
 
-  @Input() firstFiveServerTasks:Task[] | undefined = []
-  @Input() activeTasksArray:any[] = []
-  @Input() compTasksArray:any[] = []
+  @Input() tasksArray:Task[] = []
 
   @Output() markTaskAsCanceledEvent = new EventEmitter()
   @Output() markTaskAsCompEvent = new EventEmitter()
@@ -23,7 +21,7 @@ export class TodoListComponent {
     this.markTaskAsCanceledEvent.emit(taskName)
   }
 
-  markTaskAsComp(taskName:any) {
-    this.markTaskAsCompEvent.emit(taskName)
+  markTaskAsComp(task:Task) {
+    this.markTaskAsCompEvent.emit(task)
   }
 }

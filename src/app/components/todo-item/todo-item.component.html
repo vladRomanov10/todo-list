@@ -1,4 +1,4 @@
-<li class="todo-item" [class.todo__item_completed]="taskToDisplay.completed">
+<li class="todo-item" [class.todo-item_completed]="taskToDisplay.completed">
     <div class="todo-item__flex-wrapper">
         <p class="todo-item__text" [class.todo-item_completed]="taskToDisplay.completed">{{taskToDisplay.title}}</p>
         @if (!taskToDisplay.completed) {
