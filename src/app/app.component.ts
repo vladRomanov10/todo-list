@@ -24,8 +24,9 @@ export class AppComponent {
 
   tasksArray:Task[] = []
 
-  lsKey:string = this.localStorageService.lSKey
-
+  checkTaskArray () {
+    console.log(this.tasksArray)
+  }
   async getTasks () {
     const firstFiveServerTasks: Task[] = await this.APIService.getServerTasks()
 
@@ -50,17 +51,16 @@ export class AppComponent {
     this.localStorageService.setTasksArrayInLS(this.tasksArray)
   }
 
-  changeTaskStatus (taskForChange:Task) {
-    const foundTask:Task | undefined = this.tasksArray.find((task:Task) => taskForChange.id ===task.id)
+  changeTaskStatus (taskForChange:Task):void {
+    const foundTask:Task | undefined = this.tasksArray.find((task:Task) => taskForChange.id === task.id)
     if (foundTask) {
       foundTask.completed = true
-    } else {
-      return
     }
   }
 
   markTaskAsComp (compTask:Task) {
-    
+    this.changeTaskStatus(compTask)
+    this.localStorageService.setTasksArrayInLS(this.tasksArray)
   }
 
   deleteTask(taskToDel:Task):void {
