@@ -24,7 +24,16 @@ export class InputComponent {
 
   addTask():void {
     const inputValue:string = this.toDoForm.value.task
+    if (this.isOnlySpace(inputValue)) {
+      alert('The task is empty')
+      this.toDoForm.get('task')?.setValue('')
+      return
+    }
     this.addTaskEvent.emit(inputValue)
     this.toDoForm.get('task')?.setValue('')
+  }
+
+  private isOnlySpace(inputValue: string):boolean {
+    return inputValue.trim().length === 0
   }
 }
