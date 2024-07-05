@@ -11,7 +11,7 @@ import { Task } from '../../types/interfaces/task.interface';
 })
 export class DeleteButtonsComponent {
 
-  @Input() tasksArray:Task[] = []
+  @Input({required: true}) tasksArray:Task[] = []
 
   private readonly localStorageService:LocalStorageService = inject(LocalStorageService)
 

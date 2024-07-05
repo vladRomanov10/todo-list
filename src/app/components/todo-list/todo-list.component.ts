@@ -12,7 +12,7 @@ import { Task } from '../../types/interfaces/task.interface';
 })
 export class TodoListComponent {
 
-  @Input() tasksArray:Task[] = []
+  @Input({required: true}) tasksArray:Task[] = []
 
   @Output() markTaskAsCanceledEvent:EventEmitter<Task> = new EventEmitter()
   @Output() markTaskAsCompEvent:EventEmitter<Task> = new EventEmitter()

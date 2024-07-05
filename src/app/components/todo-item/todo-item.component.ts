@@ -13,7 +13,7 @@ import { Task } from '../../types/interfaces/task.interface';
 })
 export class TodoItemComponent {
 
-  @Input() taskToDisplay: Task = {
+  @Input({required: true}) taskToDisplay: Task = {
     userId: 0,
     id: 0,
     title: '',
