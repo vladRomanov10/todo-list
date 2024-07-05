@@ -12,6 +12,7 @@ import { Task } from '../../types/interfaces/task.interface';
   styleUrl: './todo-item.component.scss'
 })
 export class TodoItemComponent {
+
   @Input() taskToDisplay: Task = {
     userId: 0,
     id: 0,
@@ -19,15 +20,15 @@ export class TodoItemComponent {
     completed: false
   }
 
-  @Output() markTaskAsCanceledEvent = new EventEmitter()
-  @Output() markTaskAsCompEvent = new EventEmitter()
+  @Output() markTaskAsCanceledEvent:EventEmitter<Task> = new EventEmitter()
+  @Output() markTaskAsCompEvent:EventEmitter<Task> = new EventEmitter()
 
 
-  markTaskAsCanceled() {
+  markTaskAsCancel():void {
     this.markTaskAsCanceledEvent.emit(this.taskToDisplay)
   }
 
-  markTaskAsComp() {
+  markTaskAsComp():void {
     this.markTaskAsCompEvent.emit(this.taskToDisplay)
   }
 }

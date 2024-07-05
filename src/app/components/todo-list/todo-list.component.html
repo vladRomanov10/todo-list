@@ -4,7 +4,7 @@
         @for (task of tasksArray; track task.id) {
             <app-todo-item
                     [taskToDisplay]="task"
-                    (markTaskAsCanceledEvent)="markTaskAsCanceled($event)"
+                    (markTaskAsCanceledEvent)="markTaskAsCancel($event)"
                     (markTaskAsCompEvent)="markTaskAsComp($event)"
             >
             </app-todo-item>

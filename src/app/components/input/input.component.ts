@@ -11,7 +11,10 @@ import {NgOptimizedImage} from "@angular/common";
   styleUrl: './input.component.scss'
 })
 export class InputComponent {
-  toDoForm: any
+
+  @Output() addTaskEvent:EventEmitter<string> = new EventEmitter()
+
+  readonly toDoForm: FormGroup
 
   constructor() {
     this.toDoForm = new FormGroup({
@@ -19,10 +22,9 @@ export class InputComponent {
     })
   }
 
-  @Output() addTaskEvent = new EventEmitter()
-
-  addTask(inputValue:string) {
+  addTask():void {
+    const inputValue:string = this.toDoForm.value.task
     this.addTaskEvent.emit(inputValue)
-    this.toDoForm.get('task').setValue('')
+    this.toDoForm.get('task')?.setValue('')
   }
 }

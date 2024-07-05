@@ -13,26 +13,7 @@ export class DeleteButtonsComponent {
 
   @Input() tasksArray:Task[] = []
 
-  checkTaskArray () {
-    console.log(this.tasksArray)
-  }
-
-  localStorageService = inject(LocalStorageService)
-
-  cycleForClearTasks(tasksArray:Task[], isComp:boolean):void {
-    for (let i = tasksArray.length - 1; i >= 0; i--) {
-      if (!isComp) {
-        if (!this.tasksArray[i].completed) {
-          this.tasksArray.splice(i, 1)
-        }
-      }
-      if (isComp) {
-        if (this.tasksArray[i].completed) {
-          this.tasksArray.splice(i, 1)
-        }
-      }
-    }
-  }
+  private readonly localStorageService:LocalStorageService = inject(LocalStorageService)
 
   clearActiveTasks():void {
     this.cycleForClearTasks(this.tasksArray, false)
@@ -48,4 +29,24 @@ export class DeleteButtonsComponent {
     this.tasksArray.length = 0
     this.localStorageService.setTasksArrayInLS(this.tasksArray)
   }
+
+  private cycleForClearTasks(tasksArray:Task[], isComp:boolean):void {
+    for (let i = tasksArray.length - 1; i >= 0; i--) {
+      switch (isComp) {
+
+        case true:
+          if (this.tasksArray[i].completed) {
+            this.tasksArray.splice(i, 1)
+          }
+          break
+
+        case false:
+          if (!this.tasksArray[i].completed) {
+            this.tasksArray.splice(i, 1)
+          }
+          break
+      }
+    }
+  }
+
 }

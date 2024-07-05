@@ -1,13 +1,26 @@
 <li class="todo-item" [class.todo-item_completed]="taskToDisplay.completed">
     <div class="todo-item__flex-wrapper">
-        <p class="todo-item__text" [class.todo-item_completed]="taskToDisplay.completed">{{taskToDisplay.title}}</p>
+        <p
+                class="todo-item__text"
+                [class.todo-item_completed]="taskToDisplay.completed">{{taskToDisplay.title}}</p
+        >
         @if (!taskToDisplay.completed) {
             <div class="todo-item__check-box">
                 <button class="todo-item__comp-button button" (click)="markTaskAsComp()">
-                    <img ngSrc="assets/images/svg/done-icon.svg" width="32" height="32" priority alt="Complete task icon">
+                    <img
+                            ngSrc="assets/images/svg/done-icon.svg"
+                            width="32" height="32"
+                            priority
+                            alt="Complete task icon"
+                    >
                 </button>
-                <button class="todo-item__cancel-button button" (click)="markTaskAsCanceled()">
-                    <img ngSrc="assets/images/svg/cancel-icon.svg" width="32" height="32" priority alt="Cancel task icon">
+                <button class="todo-item__cancel-button button" (click)="markTaskAsCancel()">
+                    <img
+                            ngSrc="assets/images/svg/cancel-icon.svg"
+                            width="32" height="32"
+                            priority
+                            alt="Cancel task icon"
+                    >
                 </button>
             </div>
         }

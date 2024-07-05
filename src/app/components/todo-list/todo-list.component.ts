@@ -14,14 +14,14 @@ export class TodoListComponent {
 
   @Input() tasksArray:Task[] = []
 
-  @Output() markTaskAsCanceledEvent = new EventEmitter()
-  @Output() markTaskAsCompEvent = new EventEmitter()
+  @Output() markTaskAsCanceledEvent:EventEmitter<Task> = new EventEmitter()
+  @Output() markTaskAsCompEvent:EventEmitter<Task> = new EventEmitter()
 
-  markTaskAsCanceled(taskName:any) {
-    this.markTaskAsCanceledEvent.emit(taskName)
+  markTaskAsCancel(canceledTask:Task):void {
+    this.markTaskAsCanceledEvent.emit(canceledTask)
   }
 
-  markTaskAsComp(task:Task) {
-    this.markTaskAsCompEvent.emit(task)
+  markTaskAsComp(compTask:Task):void {
+    this.markTaskAsCompEvent.emit(compTask)
   }
 }

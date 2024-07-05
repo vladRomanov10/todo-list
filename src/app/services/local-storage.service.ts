@@ -6,15 +6,7 @@ import { Task } from "../types/interfaces/task.interface";
 })
 export class LocalStorageService {
 
-  readonly lSKey:string = 'tasksArray'
-
-  convertArrayToString (array: Task[]):string {
-    return JSON.stringify(array)
-  }
-
-  convertStringToArray (arrayInString: string):Task[] {
-    return JSON.parse(arrayInString)
-  }
+  private readonly lSKey:string = 'tasksArray'
 
   setTasksArrayInLS (tasksArray: Task[]):void {
     localStorage.setItem(this.lSKey, this.convertArrayToString(tasksArray))
@@ -25,6 +17,14 @@ export class LocalStorageService {
     const tasksArrayString:string | null = localStorage.getItem(this.lSKey)
 
     return tasksArrayString ? this.convertStringToArray(tasksArrayString) : []
+  }
+
+  private convertArrayToString (array: Task[]):string {
+    return JSON.stringify(array)
+  }
+
+  private convertStringToArray (arrayInString: string):Task[] {
+    return JSON.parse(arrayInString)
   }
 
 }
