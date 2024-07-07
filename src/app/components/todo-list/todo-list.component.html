@@ -19,8 +19,7 @@
             @if(task.completed) {
                 <app-todo-item
                         [taskToDisplay]="task"
-                        (markTaskAsCanceledEvent)="markTaskAsCancel($event)"
-                        (markTaskAsCompEvent)="markTaskAsComp($event)"
+                        (returnTaskFromCompEvent)="returnTaskFromComp($event)"
                 >
                 </app-todo-item>
             }

@@ -2,13 +2,16 @@
     <h1 class="app__header header">MY tasks</h1>
     <app-input
             class="app__input"
-            (addTaskEvent)="pushActiveTaskInArray($event)">
+            (addTaskEvent)="createTaskFromInput($event)">
     </app-input>
     <app-todo-list
             class="app__todo-list"
             [tasksArray]="tasksArray"
             (markTaskAsCanceledEvent) = "deleteTask($event)"
-            (markTaskAsCompEvent)="markTaskAsComp($event)">
+            (markTaskAsCompEvent)="changeTaskStatus($event)"
+            (returnTaskFromCompEvent)="changeTaskStatus($event)"
+    >
+
     </app-todo-list>
     <app-delete-buttons
             class="app__delete-buttons"

@@ -22,6 +22,7 @@ export class TodoItemComponent {
 
   @Output() markTaskAsCanceledEvent:EventEmitter<Task> = new EventEmitter()
   @Output() markTaskAsCompEvent:EventEmitter<Task> = new EventEmitter()
+  @Output() returnTaskFromCompEvent:EventEmitter<Task> = new EventEmitter()
 
 
   markTaskAsCancel():void {
@@ -30,5 +31,9 @@ export class TodoItemComponent {
 
   markTaskAsComp():void {
     this.markTaskAsCompEvent.emit(this.taskToDisplay)
+  }
+
+  returnTaskFromComp():void {
+    this.returnTaskFromCompEvent.emit(this.taskToDisplay)
   }
 }

@@ -25,7 +25,7 @@ export class AppComponent {
     this.getTasks()
   }
 
-  pushActiveTaskInArray(inputValue:string):void {
+  createTaskFromInput(inputValue:string):void {
     const taskFromInput:Task = {
       userId: 1,
       id: 0,
@@ -37,8 +37,9 @@ export class AppComponent {
     this.localStorageService.setTasksArrayInLS(this.tasksArray)
   }
 
-  markTaskAsComp (compTask:Task):void {
-    this.changeTaskStatus(compTask)
+  changeTaskStatus (taskForChange:Task):void {
+    const foundTask:Task = this.tasksArray.find((task:Task):boolean => taskForChange.id === task.id)!
+    foundTask.completed = !foundTask.completed
     this.localStorageService.setTasksArrayInLS(this.tasksArray)
   }
 
@@ -48,22 +49,19 @@ export class AppComponent {
   }
 
   private async getTasks ():Promise<void> {
-    const firstFiveServerTasks: Task[] = await this.APIService.getServerTasks()
 
     const lSTasks:Task[] = this.localStorageService.getTasksArrayFromLS()
 
-    this.tasksArray = firstFiveServerTasks.concat(lSTasks)
+    this.tasksArray = lSTasks
+
+    //Настройка, если LS пустой, то грузятся таски с сервера
+    if(lSTasks.length === 0) {
+      this.tasksArray = await this.APIService.getServerTasks()
+    }
   }
 
   private addId (tasksArray:Task[]):Task[] {
     return tasksArray.map((task:Task, index:number):Task => ({...task, id: index + 1}))
-  }
-
-  private changeTaskStatus (taskForChange:Task):void {
-    const foundTask:Task | undefined = this.tasksArray.find((task:Task):boolean => taskForChange.id === task.id)
-    if (foundTask) {
-      foundTask.completed = true
-    }
   }
 
 }
