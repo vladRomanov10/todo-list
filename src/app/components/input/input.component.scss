@@ -1,3 +1,5 @@
+@import "../../styles/lightTheme";
+
 .form {
   display: flex;
   justify-content: space-between;
@@ -8,13 +10,15 @@
     width: 90%;
     height: 100%;
     margin-left: 12px;
-    color: #6c68f6;
+    color: $bodyFC;
+    background-color: $bodyBg;
     border: none;
     font-size: 1.2em;
     outline: transparent;
+
   }
 
   &__input::placeholder {
-    color: #be88eb;
+    color: $bodyH;
   }
 }

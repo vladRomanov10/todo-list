@@ -1,13 +1,14 @@
 @import "app/styles/resetCSS";
-
+@import "app/styles/lightTheme";
 
 body {
   font-family: "LXGW WenKai Mono TC", monospace;
   font-weight: 400;
   font-style: normal;
   font-size: 16px;
-  color: #6c68f6;
+  color: $bodyFC;
   min-width: 340px;
+  background-color: $bodyBg;
 }
 
 .wrapper {
@@ -31,7 +32,7 @@ body {
 }
 
 .header {
-  color: #a67fef;
+  color: $bodyH;
 }
 
 .button {
@@ -42,7 +43,7 @@ body {
 }
 
 .border {
-  border: 2px solid #a67fef;
+  border: 2px solid $bodyH;
   padding: 6px;
   border-radius: 20px;
 }
