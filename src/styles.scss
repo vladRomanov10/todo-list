@@ -7,11 +7,14 @@ body {
   font-style: normal;
   font-size: 16px;
   color: #6c68f6;
+  min-width: 340px;
 }
 
 .wrapper {
-  max-width: 812px;
+  margin: 0 auto;
   padding: 0 20px;
+  max-width: 654px;
+  min-width: 340px;
 }
 
 .visually-hidden {

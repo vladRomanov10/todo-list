@@ -5,6 +5,19 @@
   display: flex;
   justify-content: space-between;
 
+  @media screen and (max-width: 647px) {
+    & {
+      height: 68px;
+    }
+  }
+
+  @media screen and (max-width: 488px) {
+    & {
+      height: 92px;
+    }
+  }
+
+
   &__item {
     width: 32%;
     height: 100%;
@@ -12,4 +25,3 @@
     font-weight: bold;
   }
 }
-
