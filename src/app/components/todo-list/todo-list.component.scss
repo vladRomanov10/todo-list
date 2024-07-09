@@ -1,6 +1,3 @@
-@import "../../styles/lightTheme";
-
-
 .todo-list {
   font-size: 1.1em;
 
@@ -17,7 +14,7 @@
     width: 50%;
     margin: 16px auto 0;
     border: 3px solid;
-    border-image: linear-gradient(to right, $bodyFC, $bodyH) 1;
+    border-image: linear-gradient(to right, var(--taskColor), var(--headerColor)) 1;
   }
 
   &__completed-ul {

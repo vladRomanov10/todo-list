@@ -1,6 +1,3 @@
-@import "../../styles/lightTheme";
-
-
 .delete-buttons {
   max-width: 612px;
   height: 58px;
@@ -11,8 +8,14 @@
   &__item {
     width: 32%;
     height: 100%;
-    color: $bodyH;
+    color: var(--headerColor);
     font-weight: bold;
+    &:hover {
+      background-color: var(--hoverButtonColor);
+    }
+    &:active {
+      background-color: var(--activeButtonColor);
+    }
   }
 
   @media screen and (max-width: 647px) {

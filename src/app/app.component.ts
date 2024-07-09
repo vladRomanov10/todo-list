@@ -6,11 +6,12 @@ import { LocalStorageService } from "./services/local-storage.service";
 import { ApiService } from "./services/api.service";
 import { DeleteButtonsComponent } from "./components/delete-buttons/delete-buttons.component";
 import { Task } from './types/interfaces/task.interface';
+import {ToggleThemesComponent} from "./components/toggle-themes/toggle-themes.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, InputComponent, TodoListComponent, DeleteButtonsComponent],
+  imports: [RouterOutlet, InputComponent, TodoListComponent, DeleteButtonsComponent, ToggleThemesComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

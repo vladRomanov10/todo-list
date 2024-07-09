@@ -1,14 +1,50 @@
 @import "app/styles/resetCSS";
-@import "app/styles/lightTheme";
+
+$bgColor_light: #fff;
+$taskColor_light: #6c68f6;
+$headerColor_light: #a67fef;
+$hoverButton_light: #381167;
+$activeButton_light: #1E0141;
+
+
+$bgColor_dark: #333;
+$taskColor_dark: #cfd183;
+$headerColor_dark: #a9ac40;
+$hoverButton_dark: #2B2B08;
+$activeButton_dark: #222207;
+
+@mixin lighten() {
+  --bgColor: #{$bgColor_light};
+  --taskColor: #{$taskColor_light};
+  --headerColor: #{$headerColor_light};
+  --hoverButtonColor: #{$hoverButton_light};
+  --activeButtonColor: #{$activeButton_light}
+}
+
+@mixin darken() {
+  --bgColor: #{$bgColor_dark};
+  --taskColor: #{$taskColor_dark};
+  --headerColor: #{$headerColor_dark};
+  --hoverButtonColor: #{$hoverButton_dark};
+  --activeButtonColor: #{$activeButton_dark}
+}
+
+body.DARK {
+  @include darken()
+}
+
+body.LIGHT {
+  @include lighten()
+}
 
 body {
   font-family: "LXGW WenKai Mono TC", monospace;
   font-weight: 400;
   font-style: normal;
   font-size: 16px;
-  color: $bodyFC;
+  color: var(--taskColor);
   min-width: 340px;
-  background-color: $bodyBg;
+  background-color: var(--bgColor);
 }
 
 .wrapper {
@@ -32,7 +68,7 @@ body {
 }
 
 .header {
-  color: $bodyH;
+  color: var(--headerColor);
 }
 
 .button {
@@ -43,7 +79,7 @@ body {
 }
 
 .border {
-  border: 2px solid $bodyH;
+  border: 2px solid var(--headerColor);
   padding: 6px;
   border-radius: 20px;
 }
