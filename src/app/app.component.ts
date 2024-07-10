@@ -46,19 +46,26 @@ export class AppComponent {
 
   deleteTask(taskToDel:Task):void {
     this.tasksArray = this.tasksArray.filter((task:Task):boolean => task.id !== taskToDel.id)
-    this.localStorageService.setTasksArrayInLS(this.tasksArray)
+
+    if (this.tasksArray.length === 0) {
+      this.localStorageService.clearLS(this.localStorageService.lSKey)
+    } else {
+      this.localStorageService.setTasksArrayInLS(this.tasksArray)
+    }
   }
 
   private async getTasks ():Promise<void> {
 
-    const lSTasks:Task[] = this.localStorageService.getTasksArrayFromLS()
+    const lSTasks:Task[] | null = this.localStorageService.getTasksArrayFromLS()
+
+    //Настройка, если LS пустой, то грузятся таски с сервера
+    if(lSTasks === null) {
+      this.tasksArray = await this.APIService.getServerTasks()
+      return
+    }
 
     this.tasksArray = lSTasks
 
-    //Настройка, если LS пустой, то грузятся таски с сервера
-    if(lSTasks.length === 0) {
-      this.tasksArray = await this.APIService.getServerTasks()
-    }
   }
 
   private addId (tasksArray:Task[]):Task[] {

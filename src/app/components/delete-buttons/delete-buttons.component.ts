@@ -27,7 +27,7 @@ export class DeleteButtonsComponent {
 
   clearAllTasks(): void {
     this.tasksArray.length = 0
-    this.localStorageService.setTasksArrayInLS(this.tasksArray)
+    this.localStorageService.clearLS(this.localStorageService.lSKey)
   }
 
   private cycleForClearTasks(tasksArray:Task[], isComp:boolean):void {

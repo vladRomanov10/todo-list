@@ -31,6 +31,5 @@ export class ToggleThemesComponent {
     document.body.classList.remove(this.currentMode)
     this.currentMode = theme
     document.body.classList.add(this.currentMode)
-
   }
 }
