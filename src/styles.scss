@@ -29,11 +29,11 @@ $activeButton_dark: #222207;
   --activeButtonColor: #{$activeButton_dark}
 }
 
-body.DARK {
+body.dark {
   @include darken()
 }
 
-body.LIGHT {
+body.light {
   @include lighten()
 }
 

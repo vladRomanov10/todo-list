@@ -1,5 +1,8 @@
 <div class="app">
-    <h1 class="app__header header">MY tasks</h1>
+    <div class="app__wrapper">
+        <h1 class="app__header header">MY tasks</h1>
+        <app-toggle-themes></app-toggle-themes>
+    </div>
     <app-input
             class="app__input"
             (addTaskEvent)="createTaskFromInput($event)">
@@ -18,5 +21,4 @@
             [tasksArray]="tasksArray"
     >
     </app-delete-buttons>
-    <app-toggle-themes></app-toggle-themes>
 </div>

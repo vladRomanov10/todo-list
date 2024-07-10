@@ -48,15 +48,4 @@ export class DeleteButtonsComponent {
       }
     }
   }
-
-  // currentMode: any = 'LIGHT'
-  // toggleMode() {
-  //   document.body.classList.toggle('LIGHT');
-  //   document.body.classList.toggle('DARK');
-  //   if (this.currentMode === 'LIGHT') {
-  //     this.currentMode = 'DARK';
-  //   } else {
-  //     this.currentMode = 'LIGHT';
-  //   }
-  // }
 }
