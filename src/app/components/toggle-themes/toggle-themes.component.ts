@@ -16,7 +16,8 @@ export class ToggleThemesComponent {
   private currentMode: Mode = Mode.LIGHT
 
   ngOnInit() {
-    document.body.classList.add(this.currentMode)
+    const themeModeFromLS:string | null = this.localStorageService.getDataFromLS(this.localStorageService.themeModeLSKey)
+    themeModeFromLS ? document.body.classList.add(themeModeFromLS) : document.body.classList.add(this.currentMode)
   }
 
   toggleMode():void {
@@ -25,6 +26,7 @@ export class ToggleThemesComponent {
     } else {
       this.updateCurrentMode(Mode.LIGHT)
     }
+    this.localStorageService.setDataInLS(this.currentMode, this.localStorageService.themeModeLSKey)
   }
 
   private updateCurrentMode(theme: Mode):void {

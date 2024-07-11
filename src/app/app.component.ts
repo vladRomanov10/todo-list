@@ -48,7 +48,7 @@ export class AppComponent {
     this.tasksArray = this.tasksArray.filter((task:Task):boolean => task.id !== taskToDel.id)
 
     if (this.tasksArray.length === 0) {
-      this.localStorageService.clearLS(this.localStorageService.lSKey)
+      this.localStorageService.clearLS(this.localStorageService.tasksArrayLSKey)
     } else {
       this.localStorageService.setTasksArrayInLS(this.tasksArray)
     }
