@@ -15,9 +15,8 @@ export class ToggleThemesComponent {
 
   private currentMode: Mode = Mode.LIGHT
 
-  ngOnInit() {
-    const themeModeFromLS:string | null = this.localStorageService.getDataFromLS(this.localStorageService.themeModeLSKey)
-    themeModeFromLS ? document.body.classList.add(themeModeFromLS) : document.body.classList.add(this.currentMode)
+  ngOnInit():void {
+    this.setMode()
   }
 
   toggleMode():void {
@@ -26,12 +25,21 @@ export class ToggleThemesComponent {
     } else {
       this.updateCurrentMode(Mode.LIGHT)
     }
-    this.localStorageService.setDataInLS(this.currentMode, this.localStorageService.themeModeLSKey)
+    this.localStorageService.setDataInLS(this.localStorageService.themeModeLSKey, this.currentMode)
   }
 
   private updateCurrentMode(theme: Mode):void {
     document.body.classList.remove(this.currentMode)
     this.currentMode = theme
     document.body.classList.add(this.currentMode)
+  }
+
+  private setMode():void {
+    const deviceMode:MediaQueryList = window.matchMedia('(prefers-color-scheme: dark)')
+    let userMode:Mode | null = this.localStorageService.getDataFromLS(this.localStorageService.themeModeLSKey)
+    if (!userMode) {
+      deviceMode.matches ? (userMode = Mode.DARK) : (userMode = Mode.LIGHT)
+    }
+    this.updateCurrentMode(userMode)
   }
 }

@@ -17,17 +17,17 @@ export class DeleteButtonsComponent {
 
   clearActiveTasks():void {
     this.cycleForClearTasks(this.tasksArray, false)
-    this.localStorageService.setTasksArrayInLS(this.tasksArray)
+    this.updateLS()
   }
 
   clearCompTasks():void {
     this.cycleForClearTasks(this.tasksArray, true)
-    this.localStorageService.setTasksArrayInLS(this.tasksArray)
+    this.updateLS()
   }
 
   clearAllTasks(): void {
     this.tasksArray.length = 0
-    this.localStorageService.clearLS(this.localStorageService.tasksArrayLSKey)
+    this.updateLS()
   }
 
   private cycleForClearTasks(tasksArray:Task[], isComp:boolean):void {
@@ -46,6 +46,14 @@ export class DeleteButtonsComponent {
           }
           break
       }
+    }
+  }
+
+  private updateLS():void {
+    if (this.tasksArray.length === 0) {
+      this.localStorageService.clearLS(this.localStorageService.tasksArrayLSKey)
+    } else {
+      this.localStorageService.setDataInLS(this.localStorageService.tasksArrayLSKey, this.tasksArray)
     }
   }
 }
