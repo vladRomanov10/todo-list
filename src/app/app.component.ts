@@ -33,29 +33,24 @@ export class AppComponent {
       title: inputValue,
       completed: false
     }
+
     this.tasksArray.push(taskFromInput)
-    this.tasksArray = this.addId(this.tasksArray)
-    this.localStorageService.setDataInLS(this.localStorageService.tasksArrayLSKey, this.tasksArray)
+    this.tasksArray = this.addIdForTasks(this.tasksArray)
+    this.localStorageService.updateLS(this.localStorageService.tasksArrayLSKey, this.tasksArray)
   }
 
   changeTaskStatus (taskForChange:Task):void {
     const foundTask:Task = this.tasksArray.find((task:Task):boolean => taskForChange.id === task.id)!
     foundTask.completed = !foundTask.completed
-    this.localStorageService.setDataInLS(this.localStorageService.tasksArrayLSKey, this.tasksArray)
+    this.localStorageService.updateLS(this.localStorageService.tasksArrayLSKey, this.tasksArray)
   }
 
   deleteTask(taskToDel:Task):void {
     this.tasksArray = this.tasksArray.filter((task:Task):boolean => task.id !== taskToDel.id)
-
-    if (this.tasksArray.length === 0) {
-      this.localStorageService.clearLS(this.localStorageService.tasksArrayLSKey)
-    } else {
-      this.localStorageService.setDataInLS(this.localStorageService.tasksArrayLSKey, this.tasksArray)
-    }
+    this.localStorageService.updateLS(this.localStorageService.tasksArrayLSKey, this.tasksArray)
   }
 
   private async getTasks ():Promise<void> {
-
     const lSTasks:Task[] | null = this.localStorageService.getDataFromLS(this.localStorageService.tasksArrayLSKey)
 
     //Настройка, если LS пустой, то грузятся таски с сервера
@@ -63,14 +58,10 @@ export class AppComponent {
       this.tasksArray = await this.APIService.getServerTasks()
       return
     }
-
     this.tasksArray = lSTasks
-
   }
 
-  private addId (tasksArray:Task[]):Task[] {
+  private addIdForTasks (tasksArray:Task[]):Task[] {
     return tasksArray.map((task:Task, index:number):Task => ({...task, id: index + 1}))
   }
-
 }
-

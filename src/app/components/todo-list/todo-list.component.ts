@@ -29,5 +29,4 @@ export class TodoListComponent {
   returnTaskFromComp(returnTask:Task):void {
     this.returnTaskFromCompEvent.emit(returnTask)
   }
-
 }

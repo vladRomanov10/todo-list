@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Task } from "../types/interfaces/task.interface";
+import {Mode} from "../types/interfaces/theme-mode";
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,14 @@ export class LocalStorageService {
   getDataFromLS<T>(lSKey:string):T | null {
     const dataInString:string | null = localStorage.getItem(lSKey)
     return dataInString ? this.convertStringToData(dataInString) : null
+  }
+
+  updateLS(lSKey:string, data:Task[] | Mode):void {
+    if (data.length === 0) {
+      this.clearLS(lSKey)
+    } else {
+      this.setDataInLS(lSKey, data)
+    }
   }
 
   clearLS(lSKey:string):void {

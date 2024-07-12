@@ -1,17 +1,22 @@
-import {Component, inject, Inject} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {Mode} from "../../types/interfaces/theme-mode";
 import {LocalStorageService} from "../../services/local-storage.service";
+import {NgOptimizedImage} from "@angular/common";
 
 @Component({
   selector: 'app-toggle-themes',
   standalone: true,
-  imports: [],
+  imports: [
+    NgOptimizedImage
+  ],
   templateUrl: './toggle-themes.component.html',
   styleUrl: './toggle-themes.component.scss'
 })
 export class ToggleThemesComponent {
 
   private readonly localStorageService:LocalStorageService = inject(LocalStorageService)
+
+  public iconSrc:string = ''
 
   private currentMode: Mode = Mode.LIGHT
 
@@ -25,13 +30,15 @@ export class ToggleThemesComponent {
     } else {
       this.updateCurrentMode(Mode.LIGHT)
     }
-    this.localStorageService.setDataInLS(this.localStorageService.themeModeLSKey, this.currentMode)
+    // this.localStorageService.setDataInLS(this.localStorageService.themeModeLSKey, this.currentMode)
+    this.localStorageService.updateLS(this.localStorageService.themeModeLSKey, this.currentMode)
   }
 
   private updateCurrentMode(theme: Mode):void {
     document.body.classList.remove(this.currentMode)
     this.currentMode = theme
     document.body.classList.add(this.currentMode)
+    this.setToggleIcon()
   }
 
   private setMode():void {
@@ -41,5 +48,13 @@ export class ToggleThemesComponent {
       deviceMode.matches ? (userMode = Mode.DARK) : (userMode = Mode.LIGHT)
     }
     this.updateCurrentMode(userMode)
+  }
+
+  private setToggleIcon ():void {
+    if(this.currentMode === Mode.LIGHT) {
+      this.iconSrc = './assets/images/svg/light-mode-icon.svg'
+    } else {
+      this.iconSrc = './assets/images/svg/dark-mode-icon.svg'
+    }
   }
 }
