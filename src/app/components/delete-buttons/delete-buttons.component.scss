@@ -1,5 +1,5 @@
 .delete-buttons {
-  max-width: 612px;
+  max-width: var(--maxWidthApp);
   height: 58px;
   font-size: 17px;
   display: flex;
@@ -21,13 +21,13 @@
     }
   }
 
-  @media screen and (max-width: 647px) {
+  @media screen and (max-width: 681px) {
     & {
       height: 68px;
     }
   }
 
-  @media screen and (max-width: 488px) {
+  @media screen and (max-width: 514px) {
     & {
       flex-direction: column;
       height: 174px;
@@ -38,5 +38,4 @@
       width: 100%;
     }
   }
-
 }

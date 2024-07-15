@@ -1,7 +1,7 @@
 .form {
   display: flex;
   justify-content: space-between;
-  max-width: 612px;
+  max-width: var(--maxWidthApp);
   height: 58px;
 
   &__input {

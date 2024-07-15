@@ -26,3 +26,11 @@ $activeButton_dark: #222207;
   --hoverButtonColor: #{$hoverButton_dark};
   --activeButtonColor: #{$activeButton_dark}
 }
+
+body.dark {
+  @include darken()
+}
+
+body.light {
+  @include lighten()
+}

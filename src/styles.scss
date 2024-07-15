@@ -1,13 +1,6 @@
 @import "app/styles/resetCSS";
 @import "app/styles/dark-light-themes.scss";
-
-body.dark {
-  @include darken()
-}
-
-body.light {
-  @include lighten()
-}
+@import "app/styles/variables";
 
 body {
   font-family: "LXGW WenKai Mono TC", monospace;
@@ -22,7 +15,7 @@ body {
 .wrapper {
   margin: 0 auto;
   padding: 0 20px;
-  max-width: 654px;
+  max-width: 682px;
   min-width: 340px;
 }
 
