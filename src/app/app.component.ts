@@ -29,13 +29,12 @@ export class AppComponent {
   createTaskFromInput(inputValue:string):void {
     const taskFromInput:Task = {
       userId: 1,
-      id: 0,
+      id: this.addIdToTask(),
       title: inputValue,
       completed: false
     }
 
     this.tasksArray.push(taskFromInput)
-    this.tasksArray = this.addIdForTasks(this.tasksArray)
     this.localStorageService.updateLS(this.localStorageService.tasksArrayLSKey, this.tasksArray)
   }
 
@@ -56,12 +55,17 @@ export class AppComponent {
     //Настройка, если LS пустой, то грузятся таски с сервера
     if(lSTasks === null) {
       this.tasksArray = await this.APIService.getServerTasks()
+      this.localStorageService.setDataInLS(this.localStorageService.tasksArrayLSKey, this.tasksArray)
       return
     }
     this.tasksArray = lSTasks
   }
 
-  private addIdForTasks (tasksArray:Task[]):Task[] {
-    return tasksArray.map((task:Task, index:number):Task => ({...task, id: index + 1}))
+  private addIdToTask ():number {
+    if (!this.tasksArray.length) {
+      return 1
+    } else {
+      return  this.tasksArray[this.tasksArray.length-1].id + 1
+    }
   }
 }
