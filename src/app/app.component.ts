@@ -65,7 +65,8 @@ export class AppComponent {
     if (!this.tasksArray.length) {
       return 1
     } else {
-      return  this.tasksArray[this.tasksArray.length-1].id + 1
+      const lastTaskId:number = this.tasksArray[this.tasksArray.length - 1].id
+      return lastTaskId + 1
     }
   }
 }
