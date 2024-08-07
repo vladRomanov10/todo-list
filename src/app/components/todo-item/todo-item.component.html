@@ -1,11 +1,6 @@
 <li class="todo-item" [class.todo-item_completed]="taskToDisplay.completed">
     <div class="todo-item__flex-wrapper">
-        <p
-                class="todo-item__text"
-                [class.todo-item_completed]="taskToDisplay.completed"
-        >
-            {{taskToDisplay.title}}
-        </p>
+        <p class="todo-item__text"> {{taskToDisplay.title}} </p>
         @if (!taskToDisplay.completed) {
             <div class="todo-item__check-box">
                 <button class="todo-item__comp-button button" (click)="markTaskAsComp()">

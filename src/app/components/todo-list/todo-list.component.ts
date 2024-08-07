@@ -14,9 +14,9 @@ export class TodoListComponent {
 
   @Input({required: true}) tasksArray:Task[] = []
 
-  @Output() markTaskAsCanceledEvent:EventEmitter<Task> = new EventEmitter()
-  @Output() markTaskAsCompEvent:EventEmitter<Task> = new EventEmitter()
-  @Output() returnTaskFromCompEvent:EventEmitter<Task> = new EventEmitter()
+  @Output() markTaskAsCanceledEvent:EventEmitter<Task> = new EventEmitter<Task>()
+  @Output() markTaskAsCompEvent:EventEmitter<Task> = new EventEmitter<Task>()
+  @Output() returnTaskFromCompEvent:EventEmitter<Task> = new EventEmitter<Task>()
 
   markTaskAsCancel(canceledTask:Task):void {
     this.markTaskAsCanceledEvent.emit(canceledTask)
