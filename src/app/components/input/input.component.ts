@@ -12,7 +12,7 @@ import {NgOptimizedImage} from "@angular/common";
 })
 export class InputComponent {
 
-  @Output() addTaskEvent:EventEmitter<string> = new EventEmitter()
+  @Output() addTaskEvent:EventEmitter<string> = new EventEmitter<string>()
 
   readonly toDoForm: FormGroup
 
