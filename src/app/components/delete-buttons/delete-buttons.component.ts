@@ -15,13 +15,13 @@ export class DeleteButtonsComponent {
 
   private readonly localStorageService:LocalStorageService = inject(LocalStorageService)
 
-  clearActiveTasks():void {
-    this.cycleForClearTasks(this.tasksArray, false)
+  clearCompTasks():void {
+    this.cycleForClearTasks(this.tasksArray, true)
     this.localStorageService.updateLS(this.localStorageService.tasksArrayLSKey, this.tasksArray)
   }
 
-  clearCompTasks():void {
-    this.cycleForClearTasks(this.tasksArray, true)
+  clearActiveTasks():void {
+    this.cycleForClearTasks(this.tasksArray, false)
     this.localStorageService.updateLS(this.localStorageService.tasksArrayLSKey, this.tasksArray)
   }
 

@@ -38,14 +38,14 @@ export class AppComponent {
     this.localStorageService.updateLS(this.localStorageService.tasksArrayLSKey, this.tasksArray)
   }
 
-  changeTaskStatus (taskForChange:Task):void {
-    const foundTask:Task = this.tasksArray.find((task:Task):boolean => task.id === taskForChange.id)!
-    foundTask.completed = !foundTask.completed
+  deleteTask(taskToDel:Task):void {
+    this.tasksArray = this.tasksArray.filter((task:Task):boolean => task.id !== taskToDel.id)
     this.localStorageService.updateLS(this.localStorageService.tasksArrayLSKey, this.tasksArray)
   }
 
-  deleteTask(taskToDel:Task):void {
-    this.tasksArray = this.tasksArray.filter((task:Task):boolean => task.id !== taskToDel.id)
+  changeTaskStatus (taskForChange:Task):void {
+    const foundTask:Task = this.tasksArray.find((task:Task):boolean => task.id === taskForChange.id)!
+    foundTask.completed = !foundTask.completed
     this.localStorageService.updateLS(this.localStorageService.tasksArrayLSKey, this.tasksArray)
   }
 
