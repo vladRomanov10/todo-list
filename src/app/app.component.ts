@@ -52,7 +52,7 @@ export class AppComponent {
   private async getTasks ():Promise<void> {
     const lSTasks:Task[] | null = this.localStorageService.getDataFromLS(this.localStorageService.tasksArrayLSKey)
 
-    //Настройка, если LS пустой, то грузятся таски с сервера
+    //Если LS пустой, то грузятся таски с сервера
     if(lSTasks === null) {
       this.tasksArray = await this.APIService.getServerTasks()
       this.localStorageService.setDataInLS(this.localStorageService.tasksArrayLSKey, this.tasksArray)
