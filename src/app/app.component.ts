@@ -39,7 +39,7 @@ export class AppComponent {
   }
 
   changeTaskStatus (taskForChange:Task):void {
-    const foundTask:Task = this.tasksArray.find((task:Task):boolean => taskForChange.id === task.id)!
+    const foundTask:Task = this.tasksArray.find((task:Task):boolean => task.id === taskForChange.id)!
     foundTask.completed = !foundTask.completed
     this.localStorageService.updateLS(this.localStorageService.tasksArrayLSKey, this.tasksArray)
   }

@@ -20,9 +20,9 @@ export class TodoItemComponent {
     completed: false
   }
 
-  @Output() markTaskAsCanceledEvent:EventEmitter<Task> = new EventEmitter()
-  @Output() markTaskAsCompEvent:EventEmitter<Task> = new EventEmitter()
-  @Output() returnTaskFromCompEvent:EventEmitter<Task> = new EventEmitter()
+  @Output() markTaskAsCanceledEvent:EventEmitter<Task> = new EventEmitter<Task>()
+  @Output() markTaskAsCompEvent:EventEmitter<Task> = new EventEmitter<Task>()
+  @Output() returnTaskFromCompEvent:EventEmitter<Task> = new EventEmitter<Task>()
 
 
   markTaskAsCancel():void {
