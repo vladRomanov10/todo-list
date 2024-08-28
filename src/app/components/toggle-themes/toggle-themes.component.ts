@@ -22,4 +22,5 @@ export class ToggleThemesComponent {
   switchTheme():void {
     this.appThemeService.switchTheme()
   }
+
 }

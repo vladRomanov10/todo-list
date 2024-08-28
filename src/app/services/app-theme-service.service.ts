@@ -1,6 +1,7 @@
 import {inject, Injectable} from '@angular/core';
 import {LocalStorageService} from "./local-storage.service";
 import {Mode} from "../types/interfaces/theme-mode";
+import {BehaviorSubject, Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -8,10 +9,11 @@ import {Mode} from "../types/interfaces/theme-mode";
 export class AppThemeServiceService {
   private readonly localStorageService:LocalStorageService = inject(LocalStorageService)
 
-  public iconSrc:string = ''
+  // public iconSrc:string = ''
 
   public currentMode: Mode = Mode.LIGHT
 
+  public currentMode$:BehaviorSubject<Mode> = new BehaviorSubject(this.currentMode)
   constructor() {
     this.setMode()
   }
@@ -38,14 +40,14 @@ export class AppThemeServiceService {
     document.body.classList.remove(this.currentMode)
     this.currentMode = theme
     document.body.classList.add(this.currentMode)
-    this.setToggleIcon()
+    // this.setToggleIcon()
   }
 
-  private setToggleIcon ():void {
-    if(this.currentMode === Mode.LIGHT) {
-      this.iconSrc = './assets/images/svg/light-mode-icon.svg'
-    } else {
-      this.iconSrc = './assets/images/svg/dark-mode-icon.svg'
-    }
-  }
+  // private setToggleIcon ():void {
+  //   if(this.currentMode === Mode.LIGHT) {
+  //     this.iconSrc = './assets/images/svg/light-mode-icon.svg'
+  //   } else {
+  //     this.iconSrc = './assets/images/svg/dark-mode-icon.svg'
+  //   }
+  // }
 }
