@@ -30,15 +30,8 @@ export class ToggleThemesComponent {
     } else {
       this.updateCurrentMode(Mode.LIGHT)
     }
-    // this.localStorageService.setDataInLS(this.localStorageService.themeModeLSKey, this.currentMode)
+    
     this.localStorageService.updateLS(this.localStorageService.themeModeLSKey, this.currentMode)
-  }
-
-  private updateCurrentMode(theme: Mode):void {
-    document.body.classList.remove(this.currentMode)
-    this.currentMode = theme
-    document.body.classList.add(this.currentMode)
-    this.setToggleIcon()
   }
 
   private setMode():void {
@@ -48,6 +41,13 @@ export class ToggleThemesComponent {
       deviceMode.matches ? (userMode = Mode.DARK) : (userMode = Mode.LIGHT)
     }
     this.updateCurrentMode(userMode)
+  }
+
+  private updateCurrentMode(theme: Mode):void {
+    document.body.classList.remove(this.currentMode)
+    this.currentMode = theme
+    document.body.classList.add(this.currentMode)
+    this.setToggleIcon()
   }
 
   private setToggleIcon ():void {
