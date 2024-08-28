@@ -1,25 +1,24 @@
-import { Injectable } from '@angular/core';
+import {inject, Injectable} from '@angular/core';
+
 import { Task } from '../types/interfaces/task.interface';
+
+import { HttpClient } from "@angular/common/http";
+
+import {map, Observable} from "rxjs";
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
+  private readonly http:HttpClient = inject(HttpClient)
   private readonly serverURL:string= 'https://jsonplaceholder.typicode.com/todos/'
 
-  async getServerTasks (): Promise<Task[]> {
-    try {
-      const serverTasks: Task[] = await this.serverRequest(this.serverURL)
-      return serverTasks.slice(0, 5)
-    } catch (error:unknown) {
-      alert('Sorry, something went wrong')
-      return []
-    }
-  }
-
-  private async serverRequest(url:string):Promise<Task[]> {
-    const res:Response = await fetch(url)
-    return await res.json()
+  getTasks(): Observable<Task[]> {
+    return this.http.get<Task[]>(this.serverURL)
+        .pipe(
+            map((tasks:Task[]) => tasks.slice(0, 5))
+        )
   }
 }

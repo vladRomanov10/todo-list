@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { InputComponent } from "./components/input/input.component";
 import { TodoListComponent } from "./components/todo-list/todo-list.component";
@@ -7,6 +7,7 @@ import { ApiService } from "./services/api.service";
 import { DeleteButtonsComponent } from "./components/delete-buttons/delete-buttons.component";
 import { Task } from './types/interfaces/task.interface';
 import {ToggleThemesComponent} from "./components/toggle-themes/toggle-themes.component";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -54,10 +55,13 @@ export class AppComponent {
 
     //Если LS пустой, то грузятся таски с сервера
     if(lSTasks === null) {
-      this.tasksArray = await this.APIService.getServerTasks()
-      this.localStorageService.setDataInLS(this.localStorageService.tasksArrayLSKey, this.tasksArray)
+      const tasks$:Observable<Task[]> = this.APIService.getTasks()
+      tasks$.subscribe(
+          (tasks:Task[]) => this.tasksArray = tasks
+      )
       return
     }
+
     this.tasksArray = lSTasks
   }
 
