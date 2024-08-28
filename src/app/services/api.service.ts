@@ -4,7 +4,8 @@ import { Task } from '../types/interfaces/task.interface';
 
 import { HttpClient } from "@angular/common/http";
 
-import {map, Observable} from "rxjs";
+import {catchError, map, Observable, of} from "rxjs";
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 
 @Injectable({
@@ -18,7 +19,16 @@ export class ApiService {
   getTasks(): Observable<Task[]> {
     return this.http.get<Task[]>(this.serverURL)
         .pipe(
-            map((tasks:Task[]) => tasks.slice(0, 5))
+            map((tasks:Task[]) => tasks.slice(0, 5)),
+            catchError(this.handleError())
         )
+  }
+
+  private handleError() {
+    return (error: any): Observable<Task[]> => {
+      console.error(error)
+      alert('Something went wrong')
+      return of([])
+    }
   }
 }

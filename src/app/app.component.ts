@@ -21,7 +21,7 @@ export class AppComponent {
   private readonly localStorageService:LocalStorageService = inject(LocalStorageService)
   private readonly APIService:ApiService = inject(ApiService)
 
-  public tasksArray:Task[] = []
+  public tasksArray!:Task[]
 
   ngOnInit():void {
     this.getTasks()
