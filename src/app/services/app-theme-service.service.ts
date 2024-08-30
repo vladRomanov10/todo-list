@@ -11,9 +11,9 @@ export class AppThemeServiceService {
 
   // public iconSrc:string = ''
 
-  public currentMode: Mode = Mode.LIGHT
+  public currentMode!: Mode
+  public currentMode$!:BehaviorSubject<Mode>
 
-  public currentMode$:BehaviorSubject<Mode> = new BehaviorSubject(this.currentMode)
   constructor() {
     this.setMode()
   }
@@ -21,8 +21,10 @@ export class AppThemeServiceService {
   switchTheme() {
     if (this.currentMode === Mode.LIGHT) {
       this.updateCurrentMode(Mode.DARK)
+      this.currentMode$.next(this.currentMode)
     } else {
       this.updateCurrentMode(Mode.LIGHT)
+      this.currentMode$.next(this.currentMode)
     }
     this.localStorageService.updateLS(this.localStorageService.themeModeLSKey, this.currentMode)
   }
@@ -34,6 +36,7 @@ export class AppThemeServiceService {
       deviceMode.matches ? (userMode = Mode.DARK) : (userMode = Mode.LIGHT)
     }
     this.updateCurrentMode(userMode)
+    this.currentMode$ = new BehaviorSubject<Mode>(this.currentMode)
   }
 
   private updateCurrentMode(theme: Mode):void {
