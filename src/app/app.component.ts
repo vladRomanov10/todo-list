@@ -50,19 +50,14 @@ export class AppComponent {
     this.localStorageService.updateLS(this.localStorageService.tasksArrayLSKey, this.tasksArray)
   }
 
-  private async getTasks ():Promise<void> {
-    const lSTasks:Task[] | null = this.localStorageService.getDataFromLS(this.localStorageService.tasksArrayLSKey)
-
-    //Если LS пустой, то грузятся таски с сервера
-    if(lSTasks === null) {
+  private getTasks ():void {
+    const tasks: Task[] | null = this.localStorageService.getDataFromLS(this.localStorageService.tasksArrayLSKey)
+    if (tasks) {
+      this.tasksArray = tasks
+    } else {
       const tasks$:Observable<Task[]> = this.APIService.getTasks()
-      tasks$.subscribe(
-          (tasks:Task[]) => this.tasksArray = tasks
-      )
-      return
+      tasks$.subscribe(serverTasks => this.tasksArray = serverTasks)
     }
-
-    this.tasksArray = lSTasks
   }
 
   private addIdToTask ():number {

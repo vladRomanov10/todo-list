@@ -4,7 +4,7 @@ import { Task } from '../types/interfaces/task.interface';
 
 import { HttpClient } from "@angular/common/http";
 
-import {catchError, map, Observable, of} from "rxjs";
+import {catchError, map, Observable, of, take} from "rxjs";
 import {error} from "@angular/compiler-cli/src/transformers/util";
 
 
@@ -19,6 +19,7 @@ export class ApiService {
   getTasks(): Observable<Task[]> {
     return this.http.get<Task[]>(this.serverURL)
         .pipe(
+            take(1),
             map((tasks:Task[]) => tasks.slice(0, 5)),
             catchError(this.handleError())
         )
