@@ -1,3 +1,10 @@
 <button class="toggle-button button" (click)="switchTheme()">
-    <img [ngSrc]=iconSrc width="32" height="32" alt="theme toggle button">
+    <img
+            [ngSrc]="(currentMode$ | async) === 'light' ?
+            './assets/images/svg/light-mode-icon.svg' :
+            './assets/images/svg/dark-mode-icon.svg'"
+            width="32" height="32"
+            priority
+            alt="theme toggle button"
+    >
 </button>

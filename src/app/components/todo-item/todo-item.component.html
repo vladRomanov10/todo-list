@@ -5,7 +5,9 @@
             <div class="todo-item__check-box">
                 <button class="todo-item__comp-button button" (click)="markTaskAsComp()">
                     <img
-                            ngSrc="assets/images/svg/done-icon.svg"
+                            [ngSrc]="(currentMode$ | async) === 'light' ?
+                            './assets/images/svg/done-icon.svg' :
+                            './assets/images/svg/done-icon_dark.svg'"
                             width="32" height="32"
                             priority
                             alt="Complete task icon"
@@ -13,7 +15,9 @@
                 </button>
                 <button class="todo-item__cancel-button button" (click)="markTaskAsCancel()">
                     <img
-                            ngSrc="assets/images/svg/cancel-icon.svg"
+                            [ngSrc]="(currentMode$ | async) === 'light' ?
+                            './assets/images/svg/cancel-icon.svg' :
+                            './assets/images/svg/cancel-icon_dark.svg'"
                             width="32" height="32"
                             priority
                             alt="Cancel task icon"
@@ -25,7 +29,9 @@
             <div class="todo-item__check-box">
                 <button class="todo-item__return-button button" (click)="returnTaskFromComp()">
                     <img
-                            ngSrc="assets/images/svg/return-icon.svg"
+                            [ngSrc]="(currentMode$ | async) === 'light' ?
+                            './assets/images/svg/return-icon.svg' :
+                            './assets/images/svg/return-icon_dark.svg'"
                             width="32" height="32"
                             priority
                             alt="Complete task icon"

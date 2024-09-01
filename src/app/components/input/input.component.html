@@ -7,7 +7,9 @@
             (click)="addTask()"
     >
         <img
-                ngSrc="./assets/images/svg/add-icon.svg"
+                [ngSrc]="(currentMode$ | async) === 'light' ?
+                './assets/images/svg/add-icon.svg' :
+                './assets/images/svg/add-icon_dark.svg'"
                 width="38" height="38"
                 priority
                 alt="Add task button"

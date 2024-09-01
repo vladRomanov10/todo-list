@@ -9,9 +9,6 @@ import {BehaviorSubject, Subject} from "rxjs";
 export class AppThemeServiceService {
   private readonly localStorageService:LocalStorageService = inject(LocalStorageService)
 
-  // public iconSrc:string = ''
-
-  public currentMode!: Mode
   public currentMode$!:BehaviorSubject<Mode>
 
   constructor() {
@@ -19,38 +16,27 @@ export class AppThemeServiceService {
   }
 
   switchTheme() {
-    if (this.currentMode === Mode.LIGHT) {
+    if (this.currentMode$.getValue() === Mode.LIGHT) {
       this.updateCurrentMode(Mode.DARK)
-      this.currentMode$.next(this.currentMode)
     } else {
       this.updateCurrentMode(Mode.LIGHT)
-      this.currentMode$.next(this.currentMode)
     }
-    this.localStorageService.updateLS(this.localStorageService.themeModeLSKey, this.currentMode)
+    this.localStorageService.updateLS(this.localStorageService.themeModeLSKey, this.currentMode$.getValue())
   }
 
   private setMode():void {
-    const deviceMode:MediaQueryList = window.matchMedia('(prefers-color-scheme: dark)')
     let userMode:Mode | null = this.localStorageService.getDataFromLS(this.localStorageService.themeModeLSKey)
     if (!userMode) {
+      const deviceMode:MediaQueryList = window.matchMedia('(prefers-color-scheme: dark)')
       deviceMode.matches ? (userMode = Mode.DARK) : (userMode = Mode.LIGHT)
     }
+    this.currentMode$ = new BehaviorSubject<Mode>(userMode)
     this.updateCurrentMode(userMode)
-    this.currentMode$ = new BehaviorSubject<Mode>(this.currentMode)
   }
 
   private updateCurrentMode(theme: Mode):void {
-    document.body.classList.remove(this.currentMode)
-    this.currentMode = theme
-    document.body.classList.add(this.currentMode)
-    // this.setToggleIcon()
+    document.body.classList.remove(this.currentMode$.getValue())
+    this.currentMode$.next(theme)
+    document.body.classList.add(this.currentMode$.getValue())
   }
-
-  // private setToggleIcon ():void {
-  //   if(this.currentMode === Mode.LIGHT) {
-  //     this.iconSrc = './assets/images/svg/light-mode-icon.svg'
-  //   } else {
-  //     this.iconSrc = './assets/images/svg/dark-mode-icon.svg'
-  //   }
-  // }
 }
