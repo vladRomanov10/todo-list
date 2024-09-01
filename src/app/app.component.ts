@@ -16,7 +16,7 @@ import {Observable} from "rxjs";
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   private readonly localStorageService:LocalStorageService = inject(LocalStorageService)
   private readonly APIService:ApiService = inject(ApiService)
