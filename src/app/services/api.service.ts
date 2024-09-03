@@ -19,7 +19,6 @@ export class ApiService {
   getTasks(): Observable<Task[]> {
     return this.http.get<Task[]>(this.serverURL)
         .pipe(
-            take(1),
             map((tasks:Task[]) => tasks.slice(0, 5)),
             catchError(this.handleError())
         )

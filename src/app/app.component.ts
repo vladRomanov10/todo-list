@@ -7,7 +7,7 @@ import { ApiService } from "./services/api.service";
 import { DeleteButtonsComponent } from "./components/delete-buttons/delete-buttons.component";
 import { Task } from './types/interfaces/task.interface';
 import {ToggleThemesComponent} from "./components/toggle-themes/toggle-themes.component";
-import {Observable} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -22,9 +22,17 @@ export class AppComponent {
   private readonly APIService:ApiService = inject(ApiService)
 
   public tasksArray!:Task[]
+  private tasksSub?:Subscription | null
 
   ngOnInit():void {
     this.getTasks()
+  }
+
+  ngOnDestroy():void {
+    if(this.tasksSub) {
+      this.tasksSub.unsubscribe()
+      this.tasksSub = null
+    }
   }
 
   createTaskFromInput(inputValue:string):void {
@@ -56,7 +64,7 @@ export class AppComponent {
       this.tasksArray = tasks
     } else {
       const tasks$:Observable<Task[]> = this.APIService.getTasks()
-      tasks$.subscribe(serverTasks => this.tasksArray = serverTasks)
+      this.tasksSub = tasks$.subscribe(serverTasks => this.tasksArray = serverTasks)
     }
   }
 
